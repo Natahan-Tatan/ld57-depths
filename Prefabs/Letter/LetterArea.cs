@@ -56,7 +56,6 @@ public class LetterArea : Area2D
 
         if(_playerIn && @event.IsActionPressed("Interact"))
         {
-            HaveBeenOpened[Identifier] = true;
             _animatedSprite.Play("opened");
             GetTree().Paused = true;
             _letterUI.Visible = true;
@@ -67,14 +66,18 @@ public class LetterArea : Area2D
     {
         _letterUI.Visible = false;
         GetTree().Paused = false;
-        EmitSignal(nameof(LetterDiscovered), Identifier, IsClue);
+
+        if(!HaveBeenOpened[Identifier])
+        {
+            HaveBeenOpened[Identifier] = true;
+            EmitSignal(nameof(LetterDiscovered), Identifier, IsClue);
+        }
     }
 
     public void _on_Letter_body_entered(Node body)
     {
         if(body is Player player)
         {
-            GD.Print("Appears !");
             CreateTween().TweenProperty(_label, "modulate", Colors.White, 0.3f);
             _playerIn = true;
         }
@@ -84,7 +87,6 @@ public class LetterArea : Area2D
     {
         if(body is Player player)
         {
-            GD.Print("Disappears !");
             CreateTween().TweenProperty(_label, "modulate", Colors.Transparent, 0.3f);
             _playerIn = false;
         }
