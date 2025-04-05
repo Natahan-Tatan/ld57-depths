@@ -74,7 +74,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = -0.216324
+rotation = -0.335103
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -85,6 +85,9 @@ shadow_item_cull_mask = 4
 [node name="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="2"]
 light_mask = 4
 light_mask = 4
+
+[node name="AngleTween" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="3"]
+playback/active = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight"]
 light_mask = 4
@@ -156,10 +159,13 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = 0.387851
+rotation = -0.251328
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6
+
+[node name="AngleTween" parent="Game/Decors/Tree/Lanterne" index="3"]
+playback/active = false
 
 [node name="Car" parent="Game/Decors" instance=ExtResource( 4 )]
 modulate = Color( 0, 0, 0, 1 )
@@ -185,6 +191,7 @@ polygon = PoolVector2Array( -275, -45, 14, -36, 85, -14, 96, 67, 340, 48, 548, 5
 [node name="Letter" parent="Game/Letters" instance=ExtResource( 6 )]
 position = Vector2( 852, -93 )
 Identifier = "Intro"
+IsClue = true
 Content = "[right]January 25th[/right]
 
 I don't know where I stand anymore... I'm obsessed with something, but I can't figure out what it is.

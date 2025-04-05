@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UI/Fonts/Noto Sans/Merge-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Prefabs/Letter/opened_letter.png" type="Texture" id=2]
+[ext_resource path="res://UI/HUD/LettersCounter.cs" type="Script" id=3]
+[ext_resource path="res://UI/HUD/blood_stain.png" type="Texture" id=4]
+[ext_resource path="res://UI/HUD/CluesCounter.cs" type="Script" id=5]
+[ext_resource path="res://UI/HUD/SleepIndicator.cs" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=7]
 size = 50
@@ -19,7 +23,32 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0, 0, 0.784314 )
+border_width_left = 50
+border_width_right = 50
+border_color = Color( 0, 0, 0, 0.784314 )
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="DynamicFont" id=12]
+size = 70
+outline_size = 2
+outline_color = Color( 0, 0.0941176, 0.705882, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0, 0, 0.784314 )
+border_width_left = 50
+border_width_right = 50
+border_color = Color( 0, 0, 0, 0.784314 )
+corner_radius_top_left = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [node name="HUD" type="CanvasLayer"]
+scale = Vector2( 0.8, 0.8 )
+transform = Transform2D( 0.8, 0, 0, 0.8, 0, 0 )
 
 [node name="InGameUI" type="Control" parent="."]
 margin_right = 40.0
@@ -29,11 +58,13 @@ theme = SubResource( 8 )
 [node name="LettersCounter" type="PanelContainer" parent="InGameUI"]
 margin_right = 14.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 345, 0 )
 custom_styles/panel = SubResource( 9 )
+script = ExtResource( 3 )
 
 [node name="HBox" type="HBoxContainer" parent="InGameUI/LettersCounter"]
 margin_left = 50.0
-margin_right = 266.0
+margin_right = 295.0
 margin_bottom = 69.0
 custom_constants/separation = 20
 
@@ -44,6 +75,55 @@ texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="InGameUI/LettersCounter/HBox"]
 margin_left = 84.0
-margin_right = 216.0
+margin_right = 245.0
 margin_bottom = 69.0
-text = "0 / 10"
+text = "10 / 10"
+
+[node name="SleepIndicator" type="PanelContainer" parent="InGameUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 568.75
+margin_top = 1.25
+margin_right = 968.75
+margin_bottom = 98.25
+custom_styles/panel = SubResource( 11 )
+script = ExtResource( 6 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InGameUI/SleepIndicator"]
+margin_left = 50.0
+margin_right = 350.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/normal_font = SubResource( 12 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="CluesCounter" type="PanelContainer" parent="InGameUI"]
+margin_left = 1250.0
+margin_right = 1601.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 345, 0 )
+custom_styles/panel = SubResource( 10 )
+script = ExtResource( 5 )
+
+[node name="HBox" type="HBoxContainer" parent="InGameUI/CluesCounter"]
+margin_left = 50.0
+margin_right = 301.0
+margin_bottom = 69.0
+custom_constants/separation = 20
+alignment = 2
+
+[node name="Label" type="Label" parent="InGameUI/CluesCounter/HBox"]
+margin_right = 161.0
+margin_bottom = 69.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10 / 10"
+
+[node name="TextureRect" type="TextureRect" parent="InGameUI/CluesCounter/HBox"]
+margin_left = 181.0
+margin_right = 251.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 70, 69 )
+texture = ExtResource( 4 )
+expand = true
