@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/opened_letter.png-9cadcf2609058f910889568e0e978896.stex"
+path="res://.import/closed_letter.png-cbde3b5c9c0d0e462f7439b059e8cc16.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prefabs/Letters/opened_letter.png"
-dest_files=[ "res://.import/opened_letter.png-9cadcf2609058f910889568e0e978896.stex" ]
+source_file="res://Prefabs/Letter/closed_letter.png"
+dest_files=[ "res://.import/closed_letter.png-cbde3b5c9c0d0e462f7439b059e8cc16.stex" ]
 
 [params]
 

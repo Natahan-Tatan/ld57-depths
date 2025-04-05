@@ -5,6 +5,7 @@
 [ext_resource path="res://Prefabs/Characters/Player/Player.cs" type="Script" id=3]
 
 [node name="Player" instance=ExtResource( 2 )]
+collision_layer = 6
 script = ExtResource( 3 )
 Speed = 40.0
 Jump = 20.0

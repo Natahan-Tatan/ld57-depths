@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/Letters/sheet.png" type="Texture" id=1]
 [ext_resource path="res://UI/Letters/back_letter.png" type="Texture" id=2]
 [ext_resource path="res://UI/Letters/front_letter.png" type="Texture" id=3]
 [ext_resource path="res://UI/Letters/Letter.theme" type="Theme" id=4]
 [ext_resource path="res://UI/Letters/Letter.cs" type="Script" id=5]
+[ext_resource path="res://UI/Letters/close_button.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 1 )
@@ -16,10 +17,26 @@ margin_bottom = 20.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 0, 0, 0, 0.666667 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+width = 1280
+
+[sub_resource type="InputEventAction" id=2]
+action = "ui_cancel"
+pressed = true
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
 [node name="Letter" type="MarginContainer"]
+pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 4 )
 custom_constants/margin_right = 500
 custom_constants/margin_left = 500
 script = ExtResource( 5 )
@@ -30,30 +47,36 @@ margin_left = 500.0
 margin_right = 780.0
 margin_bottom = 720.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_right = 280.0
+[node name="Scroll" type="CanvasLayer" parent="VBoxContainer"]
+layer = 21
+visible = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Scroll"]
+margin_left = 500.0
+margin_right = 782.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 4 )
 scroll_horizontal_enabled = false
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 270.0
-margin_bottom = 3330.0
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Scroll/ScrollContainer"]
+margin_right = 70.0
+margin_bottom = 780.0
 mouse_filter = 1
 custom_constants/margin_top = 540
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 200
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Scroll/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 540.0
-margin_right = 270.0
-margin_bottom = 3130.0
+margin_right = 70.0
+margin_bottom = 580.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer/MarginContainer/PanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Scroll/ScrollContainer/MarginContainer/PanelContainer"]
 margin_left = 30.0
 margin_top = 20.0
 margin_right = 230.0
@@ -86,7 +109,15 @@ fit_content_height = true
 scroll_active = false
 
 [node name="BackLetter" type="CanvasLayer" parent="VBoxContainer"]
-layer = -1
+layer = 20
+visible = false
+
+[node name="Backdrop" type="TextureRect" parent="VBoxContainer/BackLetter"]
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 1280, 720 )
+texture = SubResource( 6 )
+expand = true
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/BackLetter"]
 margin_left = 500.0
@@ -100,6 +131,8 @@ expand = true
 stretch_mode = 1
 
 [node name="FrontLetter" type="CanvasLayer" parent="VBoxContainer"]
+layer = 22
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/FrontLetter"]
 margin_left = 500.0
@@ -111,3 +144,17 @@ size_flags_vertical = 3
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 1
+
+[node name="CloseButton" type="TextureButton" parent="VBoxContainer/FrontLetter"]
+margin_left = 725.0
+margin_top = 664.0
+margin_right = 765.0
+margin_bottom = 704.0
+shortcut = SubResource( 3 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+expand = true
+
+[connection signal="pressed" from="VBoxContainer/FrontLetter/CloseButton" to="." method="_on_CloseButton_pressed"]
