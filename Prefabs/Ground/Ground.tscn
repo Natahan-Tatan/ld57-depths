@@ -3,9 +3,10 @@
 [ext_resource path="res://Prefabs/Ground/Ground.cs" type="Script" id=1]
 
 [sub_resource type="OccluderPolygon2D" id=1]
-polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 121, 21, 81, 50, 24, 52, -41, 44 )
+polygon = PoolVector2Array( -275, -45, 14, -36, 85, -14, 96, 67, 340, 48, 548, 53, 778, -32, 1943, -37, 2946, 54, 2788, 281, 515, 311, -289, 432, -304, 135 )
 
 [node name="Ground" type="StaticBody2D"]
+collision_mask = 0
 script = ExtResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
