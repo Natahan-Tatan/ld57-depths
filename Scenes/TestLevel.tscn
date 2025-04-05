@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
@@ -12,12 +12,18 @@ colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0, 0.344513, 0.832031, 1 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( -52.5, 135.833, 325, 135.833, 315, 220.833, -52.5, 233.333 )
+
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 1 )
 colors = PoolColorArray( 1, 1, 1, 1 )
 
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
+
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( -74.2999, 21.356, -111.777, 22.6648, -126.304, 0.65834, -164.376, 20.7493, -117.543, 36.6245, -69.985, 37.4653 )
 
 [node name="TestLevel" type="Node"]
 
@@ -29,11 +35,11 @@ light_mask = 3
 color = Color( 0.4, 0.4, 0.4, 1 )
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
-light_mask = 3
+light_mask = 7
 motion_mirroring = Vector2( 1280, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Sky"]
-light_mask = 3
+light_mask = 7
 position = Vector2( 9, 1416 )
 rotation = -1.5708
 scale = Vector2( 1, 1280 )
@@ -44,20 +50,47 @@ centered = false
 light_mask = 3
 motion_scale = Vector2( 0.2, 0.12 )
 
-[node name="Tree" parent="ParallaxBackground/far" instance=ExtResource( 3 )]
-light_mask = 3
+[node name="Node2D" type="Node2D" parent="ParallaxBackground/far"]
+light_mask = 7
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Tree" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 3 )]
+light_mask = 7
 position = Vector2( 210.333, -296.333 )
 
-[node name="Tree2" parent="ParallaxBackground/far" instance=ExtResource( 3 )]
-light_mask = 3
+[node name="Tree2" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 3 )]
+light_mask = 7
 position = Vector2( 683.333, -295 )
 
-[node name="Tree3" parent="ParallaxBackground/far" instance=ExtResource( 3 )]
-light_mask = 3
-position = Vector2( 1280, -288.333 )
+[node name="Tree4" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 3 )]
+light_mask = 7
+position = Vector2( 1435, -295 )
 
-[node name="Ground" type="Sprite" parent="ParallaxBackground/far"]
-light_mask = 3
+[node name="TreeLight" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 3 )]
+light_mask = 7
+position = Vector2( 2145, -287.5 )
+
+[node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
+position = Vector2( 142.5, -16.667 )
+rotation = -0.115758
+SwingDuration = 2.0
+SwimAngle = 20.0
+
+[node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="0"]
+range_item_cull_mask = 4
+shadow_item_cull_mask = 4
+
+[node name="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="2"]
+light_mask = 4
+light_mask = 4
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight"]
+light_mask = 4
+occluder = SubResource( 5 )
+light_mask = 4
+
+[node name="Ground" type="Sprite" parent="ParallaxBackground/far/Node2D"]
+light_mask = 7
 position = Vector2( 624.5, 706.458 )
 scale = Vector2( 2.0389, 1717.08 )
 texture = SubResource( 4 )
@@ -67,23 +100,45 @@ modulate = Color( 0.541176, 0.541176, 0.541176, 1 )
 light_mask = 3
 motion_scale = Vector2( 0.5, 0.3 )
 
-[node name="Tree" parent="ParallaxBackground/near" instance=ExtResource( 3 )]
+[node name="Node2D" type="Node2D" parent="ParallaxBackground/near"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Tree" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 3 )]
 light_mask = 3
 position = Vector2( 222, -196 )
 
-[node name="Tree2" parent="ParallaxBackground/near" instance=ExtResource( 3 )]
+[node name="Tree2" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 3 )]
 light_mask = 3
 position = Vector2( 691.111, -193.333 )
 
-[node name="Tree3" parent="ParallaxBackground/near" instance=ExtResource( 3 )]
+[node name="Tree3" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 3 )]
 light_mask = 3
 position = Vector2( 1281.11, -193.333 )
 
-[node name="Ground" type="Sprite" parent="ParallaxBackground/near"]
+[node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
 light_mask = 3
 position = Vector2( 790.889, 489.681 )
 scale = Vector2( 1.8878, 1082.86 )
 texture = SubResource( 4 )
+
+[node name="Car" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 4 )]
+light_mask = 0
+position = Vector2( 1112.5, -70 )
+rotation = -0.0349066
+scale = Vector2( -1, 1 )
+
+[node name="Light2D" parent="ParallaxBackground/near/Node2D/Car" index="2"]
+position = Vector2( -78.8907, -6.55473 )
+energy = 0.5
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_item_cull_mask = 2
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/near/Node2D/Car"]
+light_mask = 2
+position = Vector2( 1.29297, 1.20562 )
+occluder = SubResource( 6 )
+light_mask = 2
 
 [node name="Game" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -105,7 +160,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors" instance=ExtResource( 5 )]
 position = Vector2( 721, -189 )
-SwingSpeed = 0.8
+rotation = -0.0481336
 
 [node name="Ground" type="Node2D" parent="Game"]
 
@@ -128,4 +183,6 @@ collision_layer = 1
 current = true
 smoothing_enabled = true
 
+[editable path="ParallaxBackground/far/Node2D/TreeLight/Lanterne"]
+[editable path="ParallaxBackground/near/Node2D/Car"]
 [editable path="Game/Ground/MainGround"]
