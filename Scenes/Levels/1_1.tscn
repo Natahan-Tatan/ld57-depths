@@ -1,10 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Decors/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/EndLevel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/Letter/Letter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Decors/Torch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/AlarmLight/AlarmLight.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Decors/LightBeams/beam_circle.png" type="Texture" id=9]
+[ext_resource path="res://Prefabs/Characters/Shadows/Shadow.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Decors/Van.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Decors/Lanterne.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Prefabs/AlarmLight/DeactivatableAlarmLight.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Prefabs/ActivationButton/ActivationButton.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0.398438, 0.647522, 1, 1 )
@@ -19,6 +28,38 @@ colors = PoolColorArray( 1, 1, 1, 1 )
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 20.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "swing"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1.10957, 1, 0.5 ),
+"update": 0,
+"values": [ 20.0, -20.0, 20.0 ]
+}
+
 [node name="TestLevel" type="Node"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -26,23 +67,31 @@ layer = -1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]
 light_mask = 3
-color = Color( 0.25098, 0.25098, 0.25098, 1 )
+color = Color( 0.290196, 0.290196, 0.290196, 1 )
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 7
 motion_mirroring = Vector2( 1280, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Sky"]
 light_mask = 7
-position = Vector2( 9, 1416 )
+position = Vector2( 9.00244, 2091.32 )
 rotation = -1.5708
-scale = Vector2( 1, 1280 )
+scale = Vector2( 1.73331, 1280 )
 texture = SubResource( 2 )
 centered = false
 
 [node name="far" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 3
 motion_scale = Vector2( 0.2, 0.12 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/far"]
 light_mask = 7
@@ -60,16 +109,36 @@ position = Vector2( 683.333, -295 )
 light_mask = 7
 position = Vector2( 1435, -295 )
 
+[node name="Tree5" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 4 )]
+light_mask = 7
+position = Vector2( 2262.5, -287.5 )
+
+[node name="Tree6" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 4 )]
+light_mask = 7
+position = Vector2( 2642.5, -287.5 )
+
+[node name="Tree7" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 4 )]
+light_mask = 7
+position = Vector2( 3370, -287.5 )
+
+[node name="Tree8" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 4 )]
+light_mask = 7
+position = Vector2( 4380, -275 )
+
 [node name="Ground" type="Sprite" parent="ParallaxBackground/far/Node2D"]
 light_mask = 7
-position = Vector2( 624.5, 706.458 )
-scale = Vector2( 2.0389, 1717.08 )
+position = Vector2( 4027.5, 706.458 )
+scale = Vector2( 7.99805, 1717.08 )
 texture = SubResource( 4 )
 
 [node name="near" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color( 0.541176, 0.541176, 0.541176, 1 )
 light_mask = 3
 motion_scale = Vector2( 0.5, 0.3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/near"]
 scale = Vector2( 0.8, 0.8 )
@@ -86,36 +155,271 @@ position = Vector2( 691.111, -193.333 )
 light_mask = 3
 position = Vector2( 1281.11, -193.333 )
 
-[node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
+[node name="Torch" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 7 )]
+position = Vector2( 1398.75, -56.25 )
+rotation = 1.65806
+scale = Vector2( 0.6, 0.6 )
+energy = 0.5
+range_item_cull_mask = 6
+shadow_enabled = false
+
+[node name="Tree4" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 4 )]
 light_mask = 3
-position = Vector2( 790.889, 489.681 )
-scale = Vector2( 1.8878, 1082.86 )
+position = Vector2( 2207.5, -175 )
+
+[node name="Tree5" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 4 )]
+light_mask = 3
+position = Vector2( 2631.25, -180 )
+
+[node name="Tree6" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 4 )]
+light_mask = 3
+position = Vector2( 3005, -171.25 )
+
+[node name="Tree7" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 4 )]
+light_mask = 3
+position = Vector2( 3682.5, -185 )
+
+[node name="Lanterne" parent="ParallaxBackground/near/Node2D/Tree7" instance=ExtResource( 12 )]
+position = Vector2( -536.25, -7.50002 )
+rotation = 0.170522
+SwingDuration = 2.0
+SwimAngle = 10.0
+
+[node name="Lanterne" parent="ParallaxBackground/near/Node2D/Tree7/Lanterne" index="0"]
+energy = 0.3
+range_item_cull_mask = 6
+shadow_item_cull_mask = 6
+
+[node name="LightOccluder2D" parent="ParallaxBackground/near/Node2D/Tree7/Lanterne" index="2"]
+light_mask = 2
+light_mask = 2
+
+[node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
+position = Vector2( 1631.25, 489.681 )
+scale = Vector2( 4.71436, 1082.86 )
 texture = SubResource( 4 )
+
+[node name="DebugLight" type="Sprite" parent="ParallaxBackground"]
+visible = false
+position = Vector2( 5624, 14 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 9 )
 
 [node name="Game" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Game"]
-color = Color( 0.298039, 0.298039, 0.298039, 1 )
+color = Color( 0.345098, 0.345098, 0.345098, 1 )
 
-[node name="Decors" type="Node2D" parent="Game"]
+[node name="Sections" type="Node2D" parent="Game"]
 
-[node name="Grounds" type="Node2D" parent="Game"]
-
-[node name="Ground" parent="Game/Grounds" instance=ExtResource( 2 )]
+[node name="MainGround" parent="Game/Sections" instance=ExtResource( 2 )]
 position = Vector2( 20, -6 )
-polygon = PoolVector2Array( -207, -53, 14, -36, 127, -52, 125, 21, 81, 50, 24, 52, -235, 83 )
+polygon = PoolVector2Array( -207, -53, 14, -36, 1279, -82, 1234, -56, 1168, -47, 1136, -23, 1070, -2, 1009, 50, 885, 151, 870, 194, 900, 228, 1044, 149, 1057, 395, 1299, 357, 1422, 274, 2009, -41, 2760, -33, 3072, -36, 3068, -5, 3578, 19, 3779, -17, 3785, -71, 4141, 58, 4585, 238, 4944, 226, 5490, 190, 6041, 160, 6509, -169, 6901, -187, 6894, -329, 6686, -329, 6687, -644, 7304, -839, 7502, -557, 7526, 187, 7021, 581, 6683, 604, 4022, 825, 1510, 1033, -80, 714, -1211, 689, -1078, 261, -929, 286, -657, 271, -648, 279, -440, 277 )
 
-[node name="Letters" type="Node2D" parent="Game"]
+[node name="LeftStartLadder" type="Node2D" parent="Game/Sections/MainGround"]
+position = Vector2( -20, 6 )
+
+[node name="Ground" parent="Game/Sections/MainGround/LeftStartLadder" instance=ExtResource( 2 )]
+position = Vector2( -830, 194 )
+polygon = PoolVector2Array( -100, 34, 122, 8, 125, 21, 80, 38, 24, 36, -29, 93, -55, 92, -203, 100 )
+
+[node name="Ground2" parent="Game/Sections/MainGround/LeftStartLadder" instance=ExtResource( 2 )]
+position = Vector2( -1101, 125 )
+polygon = PoolVector2Array( -47, 24, 122, 8, 125, 21, 80, 38, 37.5121, 36.4826, 24, 36, -28, 40 )
+
+[node name="Ground3" parent="Game/Sections/MainGround/LeftStartLadder" instance=ExtResource( 2 )]
+position = Vector2( -858, 46 )
+polygon = PoolVector2Array( -32, 22, 19.7541, 17.2951, 146, 8, 142, 32, 80, 38, 24, 36, -28, 40 )
+
+[node name="Ground4" parent="Game/Sections/MainGround/LeftStartLadder" instance=ExtResource( 2 )]
+position = Vector2( -658, -24 )
+polygon = PoolVector2Array( -36, -30, -6, -46, 182, -128, 314, -98, 236, -62, 152, -6, 112, 6, 64, 24, 62, -6 )
+
+[node name="StartWarningLetter" parent="Game/Sections/MainGround/LeftStartLadder" instance=ExtResource( 6 )]
+position = Vector2( -707, 214 )
+Identifier = "StartWarning"
+Content = "[right]September 5th 1990[/right]
+
+I know this forest, I've been here before... When I was a kid I used to jump over ditches, climb trees and go from branch to branch.
+
+But I was careful not to fall into the holes... One day I did, and my father gave me a beating.... one of the worst of my life."
+
+[node name="Torch" parent="Game/Sections/MainGround/LeftStartLadder" instance=ExtResource( 7 )]
+position = Vector2( -599, 263 )
+rotation = 1.91986
+scale = Vector2( 1, 1 )
+
+[node name="Tree" parent="Game/Sections/MainGround" instance=ExtResource( 4 )]
+position = Vector2( 388, -189 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Tree2" parent="Game/Sections/MainGround" instance=ExtResource( 4 )]
+position = Vector2( 816, -193 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="FirstRock" parent="Game/Sections/MainGround" instance=ExtResource( 2 )]
+position = Vector2( 1168, 120 )
+polygon = PoolVector2Array( -79, 8, 14, -36, 52, -40, 36, -46, 32, -63, 35, -74, 41, -89, 47, -96, 57, -97, 84, -96, 101, -83, 105, -69, 97, -53, 80, -44, 388, -98, 352, -25, 125, 21, 81, 50, 24, 52, -45, 52 )
+
+[node name="Torch" parent="Game/Sections/MainGround/FirstRock" instance=ExtResource( 7 )]
+position = Vector2( 89, -106 )
+rotation = -1.67028
+scale = Vector2( 1, 1 )
+enabled = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AlarmLight" parent="Game/Sections/MainGround/FirstRock/Torch" instance=ExtResource( 8 )]
+position = Vector2( -1.56943, -7.69263 )
+scale = Vector2( 0.490198, 0.454953 )
+
+[node name="LevelBisLetter" parent="Game/Sections/MainGround/FirstRock" instance=ExtResource( 6 )]
+position = Vector2( -261, 44 )
+Identifier = "LevelBis"
+Content = "[right]September 2nd 1992[/right]
+
+I came back to this forest a few years later, but I didn't recognize it! So much had changed and I remember having fun exploring it all over again.
+
+Sometimes it's worth coming back to places you've already been..."
+
+[node name="Polygon2D" type="Polygon2D" parent="Game/Sections/MainGround/FirstRock/LevelBisLetter"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -1, -2, 0, -10, 2, -23, -3, -30, 2, -34, 7, -23 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="Game/Sections/MainGround/FirstRock/LevelBisLetter"]
+position = Vector2( 31, -25 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 13, 0, 6, -10, 2, -23, -3, -30, 2, -34, 6, -21 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Game/Sections/MainGround/FirstRock/LevelBisLetter"]
+position = Vector2( 53, -44 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 7, 3, 6, -10, 2, -23, -3, -30, 2, -34, 6, -21, 9, -10 )
+
+[node name="Camp" type="Node2D" parent="Game/Sections/MainGround"]
+
+[node name="Tree3" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 4 )]
+position = Vector2( 2446, -177 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -65, 155, -30, 100, -13, 24, -15, -21, -75, 3, -187, -28, -182, -35, -133, -23, -118, -53, -122, -20, -80, -9, -18, -33, -44, -68, -58, -142, -115, -152, -53, -156, -39, -111, -20, -66, 51, -164, 104, -126, 56, -147, -1, -71, 143, -24, 149, -27, 145, -20, 8, -47, 16, 53, 32, 103, 58, 146 )
+
+[node name="Bag" type="Polygon2D" parent="Game/Sections/MainGround/Camp"]
+position = Vector2( 2586, -201 )
+rotation = 0.349066
+color = Color( 0, 0, 0, 1 )
+offset = Vector2( -2323, 260 )
+polygon = PoolVector2Array( 2326, -238, 2325, -262, 2320, -264, 2319, -233, 2305, -220, 2303, -215, 2312, -202, 2326, -203, 2333, -208, 2330, -212, 2333, -215, 2336, -217, 2340, -218, 2348, -221, 2351, -228, 2346, -234, 2351, -232, 2353, -233, 2355, -235, 2356, -238, 2356, -240, 2355, -243, 2353, -245, 2348, -246, 2343, -246, 2340, -244, 2340, -241, 2342, -237, 2335, -242 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Sections/MainGround/Camp/Bag"]
+autoplay = "swing"
+anims/RESET = SubResource( 5 )
+anims/swing = SubResource( 6 )
+
+[node name="Van" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 11 )]
+
+[node name="FloatingRock" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 2 )]
+position = Vector2( 3451, -139 )
+polygon = PoolVector2Array( -65, 34, 17, 10, 169, -3, 170, 28, 81, 50, 24, 52, -41, 44 )
+
+[node name="Shadow" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 10 )]
+position = Vector2( 3332, -46 )
+
+[node name="CabaneLetter" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 6 )]
+position = Vector2( 2813, -85 )
+Identifier = "UnderCabaneClue"
+Content = "[right]June 28th 1993[/right]
+
+My father and I often went camping in the woods. We'd sleep in the caravan and sometimes, when he'd had a bit too much to drink, he'd hit me.
+
+But I didn't hold it against him, I was a wimp, I just had to toughen up.
+
+On another trip, I remember finding a bird that had fallen out of its nest near the cabin where we were sleeping. I was horrified, but I thought, \"What would my father do?\" So I picked up a rock and threw it at the bird to finish it off... It was a strangely pleasant experience for me... My first time..."
+
+[node name="ClimbingTree" type="Node2D" parent="Game/Sections/MainGround"]
+position = Vector2( 4391, -275 )
+
+[node name="Tree1" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 2 )]
+position = Vector2( -19, 7 )
+polygon = PoolVector2Array( 12, -1479, 120, -1493, 120, -1262, 124, -467, 247, -424, 262, -461, 284, -457, 264, -419, 332, -389, 317, -373, 130.315, -431.207, 132.27, -273.831, 320.223, -210.503, 393, -272, 398, -243, 341, -201, 666, -94, 664, -61, 133, -215, 133, 99, 186, 182, -107, 209, -35, 102, -24, -51, -29, -96, -324, -561, -291, -581, -28, -292 )
+
+[node name="Tree2" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 2 )]
+position = Vector2( 993, 0 )
+polygon = PoolVector2Array( 12, -1479, 120, -1493, 120, -1262, 133, 99, 186, 182, -107, 209, -35, 102, -31.6853, 55.8944, -425, 107, -435, 82, -260.082, 55.5381, -195, -15, -175, -6, -214, 48, -31, 25, -24.7517, -510.561, -174.585, -504.787, -328, -356, -353, -354, -326, -386, -399, -428, -303.9, -410.147, -218, -504, -589, -474, -611, -492, -22.2783, -575.735, -17.4064, -704.114, -368, -655, -332, -681, -157.786, -708.273, -137, -740, -126, -736, -132, -713, -19, -730, -15.8711, -805.599, -241, -775, -230, -800, -17, -828, -14.8765, -875.668, -78, -883, -109, -889, -99, -899, -15, -900 )
+
+[node name="Letter" parent="Game/Sections/MainGround/ClimbingTree/Tree2" instance=ExtResource( 6 )]
+position = Vector2( -76, -882 )
+Identifier = "Evidence_1"
+IsClue = true
+Content = "[right]August 4th 2020[/right]
+
+It was after seeing my childhood tree again... the one I'd climbed to escape my father, that I came across this big fellow. He was walking through the forest, wearing a dark green and pale yellow sweater like my father's.
+
+That's when I felt an urge I hadn't felt since childhood. I grabbed a rock that was lying there and rushed at the man standing in front of me. He didn't have time to react; [color=#ac3232] I hit him 2, 3, 4 times in the head. [/color] He collapsed to the ground, lifeless... I fell to my hands and knees and saw a bird fly out from behind the man lying in front of me."
+
+[node name="Torch" parent="Game/Sections/MainGround/ClimbingTree/Tree2" instance=ExtResource( 7 )]
+position = Vector2( -68, -828 )
+
+[node name="Ground" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 2 )]
+position = Vector2( -140, 194 )
+polygon = PoolVector2Array( -200, -67, -1, -39, 426, -69, 639, 29, 578, 55, 81, 50, 24, 52, -41, 44, -204, -10 )
+
+[node name="Ground2" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 2 )]
+position = Vector2( 816, 175 )
+polygon = PoolVector2Array( 88, 13, 535, -71, 659, -13, 695, 43, -215, 202, -233, 179, -288, 190, -294, 176, -123, 102, -44, 56 )
+
+[node name="Lanterne" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
+position = Vector2( 97, 244 )
+rotation = 0.0
+SwimAngle = 0.0
+
+[node name="Lanterne" parent="Game/Sections/MainGround/ClimbingTree/Lanterne" index="0"]
+texture_scale = 1.75
+
+[node name="Lanterne2" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
+position = Vector2( 580, 357 )
+rotation = -0.0897858
+SwimAngle = 10.0
+
+[node name="AlarmLanternButton" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 14 )]
+position = Vector2( 873, 184 )
+rotation = -0.371755
+
+[node name="AlarmLantern" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
+position = Vector2( 1292, 253 )
+rotation = -0.179572
+__meta__ = {
+"_edit_group_": true
+}
+SwimAngle = 20.0
+
+[node name="Lanterne" parent="Game/Sections/MainGround/ClimbingTree/AlarmLantern" index="0"]
+visible = false
+
+[node name="DeactivatableAlarmLight" parent="Game/Sections/MainGround/ClimbingTree/AlarmLantern" instance=ExtResource( 13 )]
+position = Vector2( 4.99976, 13 )
+scale = Vector2( 2.055, 1.416 )
+ButtonPath = NodePath("../../AlarmLanternButton")
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( -125, -87 )
+position = Vector2( -69, -83 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 current = true
 smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="EndLevel" parent="." instance=ExtResource( 5 )]
-position = Vector2( 163, -95 )
+position = Vector2( 6801, -235 )
+
+[editable path="ParallaxBackground/near/Node2D/Tree7/Lanterne"]
+[editable path="Game/Sections/MainGround/FirstRock/Torch"]
+[editable path="Game/Sections/MainGround/ClimbingTree/Lanterne"]
+[editable path="Game/Sections/MainGround/ClimbingTree/AlarmLantern"]
