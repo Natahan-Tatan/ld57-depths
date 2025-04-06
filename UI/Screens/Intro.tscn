@@ -1,0 +1,165 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://UI/Fonts/Noto Sans/Merge-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Screens/prisonner3.png" type="Texture" id=2]
+[ext_resource path="res://UI/Screens/prisonner1.png" type="Texture" id=3]
+[ext_resource path="res://UI/Screens/prisonner4.png" type="Texture" id=4]
+[ext_resource path="res://UI/Screens/prisonner2.png" type="Texture" id=5]
+[ext_resource path="res://UI/Screens/GameOver.theme" type="Theme" id=6]
+[ext_resource path="res://UI/Screens/Intro.cs" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 70
+outline_size = 2
+outline_color = Color( 0.0352941, 0, 0.290196, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="AnimatedTexture" id=6]
+frames = 4
+oneshot = true
+fps = 2.0
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 2 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 5 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 3 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=8]
+size = 35
+font_data = ExtResource( 1 )
+
+[node name="Intro" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 7 )
+FirstLevel = "res://Scenes/Levels/1_1.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 97.0
+custom_fonts/normal_font = SubResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=2.0 level=2 connected=1]A criminel fall asleep 💤 ...[/shake][/center]"
+text = "A criminel fall asleep 💤 ..."
+fit_content_height = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 101.0
+margin_right = 1280.0
+margin_bottom = 625.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Prisonner" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_right = 830.0
+margin_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 6 )
+stretch_mode = 6
+
+[node name="St_1" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 114.0
+margin_right = 514.0
+margin_bottom = 524.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center]As a new recruit, it's up to you to enter this criminal's mind while he's asleep.
+
+It's imperative that we take advantage of his sleep to uncover evidence of his misdeeds.[/center]"
+text = "As a new recruit, it's up to you to enter this criminal's mind while he's asleep.
+
+It's imperative that we take advantage of his sleep to uncover evidence of his misdeeds."
+
+[node name="St_2" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 430.0
+margin_right = 830.0
+margin_bottom = 524.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center]Go through his dreams, more and more lavishly, and find the letters. 
+
+Some will contain evidence, while others will be mere clues to the most important ones.[/center]"
+text = "Go through his dreams, more and more lavishly, and find the letters. 
+
+Some will contain evidence, while others will be mere clues to the most important ones."
+
+[node name="St_3" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 880.0
+margin_right = 1280.0
+margin_bottom = 524.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center]Watch out for red lights that will draw the dreamer's attention to you! 
+
+Don't make too much trouble, or he'll wake up and that'll be that..[/center]"
+text = "Watch out for red lights that will draw the dreamer's attention to you! 
+
+Don't make too much trouble, or he'll wake up and that'll be that.."
+
+[node name="St_4" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 430.0
+margin_right = 830.0
+margin_bottom = 524.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center]There are 3 layers. At the end of each section, if you haven't attracted attention, you can go further down. 
+Once in the lowest layer, if you've found all the evidence, you can leave...[/center]"
+text = "There are 3 layers. At the end of each section, if you haven't attracted attention, you can go further down. 
+Once in the lowest layer, if you've found all the evidence, you can leave..."
+
+[node name="St_5" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+margin_left = 880.0
+margin_right = 1280.0
+margin_bottom = 524.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center]Good luck rookie!
+
+And come back to us in one piece![/center]"
+text = "Good luck rookie!
+
+And come back to us in one piece!"
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 629.0
+margin_right = 1280.0
+margin_bottom = 720.0
+alignment = 1
+
+[node name="SkipButton" type="ToolButton" parent="VBoxContainer/Buttons"]
+margin_left = 402.0
+margin_right = 682.0
+margin_bottom = 91.0
+focus_neighbour_left = NodePath("../NextButton")
+text = "Skip intro"
+
+[node name="NextButton" type="ToolButton" parent="VBoxContainer/Buttons"]
+margin_left = 732.0
+margin_right = 878.0
+margin_bottom = 91.0
+focus_neighbour_right = NodePath("../SkipButton")
+text = "Next"
+
+[connection signal="pressed" from="VBoxContainer/Buttons/SkipButton" to="." method="_on_SkipButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/NextButton" to="." method="_on_NextButton_pressed"]
