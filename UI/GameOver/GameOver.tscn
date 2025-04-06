@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://UI/Fonts/Noto Sans/Merge-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/GameOver/prisonner3.png" type="Texture" id=2]
+[ext_resource path="res://UI/GameOver/prisonner1.png" type="Texture" id=3]
+[ext_resource path="res://UI/GameOver/prisonner4.png" type="Texture" id=4]
+[ext_resource path="res://UI/GameOver/prisonner2.png" type="Texture" id=5]
+[ext_resource path="res://UI/GameOver/GameOver.theme" type="Theme" id=6]
+[ext_resource path="res://UI/GameOver/GameOver.cs" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+outline_size = 2
+outline_color = Color( 0.552941, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="AnimatedTexture" id=4]
+frames = 4
+oneshot = true
+fps = 2.0
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 2 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 4 )
+frame_3/delay_sec = 0.0
+
+[node name="GameOver" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 7 )
+FirstLevel = "res://Scenes/TestLevel.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 97.0
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=10.0 level=10 connected=1]He woke up ![/shake][/center]"
+text = "He woke up !"
+fit_content_height = true
+
+[node name="Prisonner" type="TextureRect" parent="VBoxContainer"]
+margin_top = 101.0
+margin_right = 1280.0
+margin_bottom = 625.0
+size_flags_vertical = 3
+texture = SubResource( 4 )
+stretch_mode = 6
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 629.0
+margin_right = 1280.0
+margin_bottom = 720.0
+alignment = 1
+
+[node name="RetryButton" type="ToolButton" parent="VBoxContainer/Buttons"]
+margin_left = 414.0
+margin_right = 682.0
+margin_bottom = 91.0
+focus_neighbour_left = NodePath("../QuitButton")
+text = "Continue"
+
+[node name="QuitButton" type="ToolButton" parent="VBoxContainer/Buttons"]
+margin_left = 732.0
+margin_right = 865.0
+margin_bottom = 91.0
+focus_neighbour_right = NodePath("../RetryButton")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Buttons/RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
