@@ -8,6 +8,23 @@ public class AlarmLight : Light2D
     public delegate void PlayerDetected();
     private RayCast2D[] _raycasts;
 
+    [Export]
+    public bool Monitoring
+    {
+        get => base.Visible;
+        set{
+            base.Visible = value;
+
+            if(_raycasts != null)
+            {
+                foreach(var r in _raycasts)
+                {
+                    r.Enabled = value;
+                }
+            }
+        }
+    }
+
     public override void _Ready()
     {
         _raycasts = GetChildren().OfType<RayCast2D>().ToArray();

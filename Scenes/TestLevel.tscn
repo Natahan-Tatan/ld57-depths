@@ -75,7 +75,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = 0.118844
+rotation = 0.277602
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -86,9 +86,6 @@ shadow_item_cull_mask = 4
 [node name="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="2"]
 light_mask = 4
 light_mask = 4
-
-[node name="AngleTween" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="3"]
-playback/active = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight"]
 light_mask = 4
@@ -159,13 +156,10 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = 0.620561
+rotation = -0.222255
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6
-
-[node name="AngleTween" parent="Game/Decors/Tree/Lanterne" index="3"]
-playback/active = false
 
 [node name="Car" parent="Game/Decors" instance=ExtResource( 4 )]
 modulate = Color( 0, 0, 0, 1 )
