@@ -40,6 +40,8 @@ public class SleepIndicator : PanelContainer
         GetTree().GetFirstNodeInGroup("Player").Connect(nameof(Player.FallOutOfBound), this, nameof(_on_AlarmLight_PlayerDetected));
 
         _label = GetNode<RichTextLabel>("RichTextLabel");
+
+        Remaining = Remaining;
         _UpdateIndicator();
     }
 

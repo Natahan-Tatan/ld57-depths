@@ -5,7 +5,7 @@ using System.Linq;
 public class CluesCounter : PanelContainer
 {
     public const int TOTAL_LETTERS = 5;
-    public static int LettersOpened {get; protected set;} = 0;
+    public static int LettersOpened {get; protected set;} = 5;
 
     private Label _label;
     public override void _Ready()
