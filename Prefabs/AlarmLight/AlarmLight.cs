@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
+[Tool]
 public class AlarmLight : Light2D
 {
     [Signal]

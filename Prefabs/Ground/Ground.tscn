@@ -20,4 +20,5 @@ light_mask = 7
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
 polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 125, 21, 81, 50, 24, 52, -41, 44 )

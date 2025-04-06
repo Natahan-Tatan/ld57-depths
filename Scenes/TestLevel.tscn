@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Prefabs/Letter/Letter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/AlarmLight/AlarmLight.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/AlarmLight/DeactivatableAlarmLight.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Prefabs/ActivationButton/ActivationButton.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0.398438, 0.647522, 1, 1 )
@@ -75,7 +77,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = 0.277602
+rotation = -0.171312
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -145,6 +147,10 @@ light_mask = 2
 [node name="Game" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
+[node name="ActivationButton" parent="Game" instance=ExtResource( 10 )]
+position = Vector2( 1318, 56.9999 )
+rotation = 0.510512
+
 [node name="CanvasModulate" type="CanvasModulate" parent="Game"]
 color = Color( 0.298039, 0.298039, 0.298039, 1 )
 
@@ -156,7 +162,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = -0.222255
+rotation = 0.244456
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6
@@ -191,7 +197,7 @@ I don't know where I stand anymore... I'm obsessed with something, but I can't f
 People close to me don't understand me anymore, they say I work too much, that I come home late at night... Yet I'm sure it's still light out when I leave work. Maybe they're the ones losing their minds."
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 1440, -107 )
+position = Vector2( 1208, -67 )
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 current = true
@@ -199,9 +205,10 @@ smoothing_enabled = true
 
 [node name="Light2D" parent="Game" instance=ExtResource( 8 )]
 
-[node name="AlarmLight" parent="Game" instance=ExtResource( 8 )]
-position = Vector2( 1755, -310 )
-scale = Vector2( 2.42667, 1.64 )
+[node name="DeactivatableAlarmLight" parent="Game" instance=ExtResource( 9 )]
+position = Vector2( 1739.5, -332 )
+scale = Vector2( 1.63333, 1.58 )
+ButtonPath = NodePath("../ActivationButton")
 
 [node name="HUD" parent="." instance=ExtResource( 7 )]
 
