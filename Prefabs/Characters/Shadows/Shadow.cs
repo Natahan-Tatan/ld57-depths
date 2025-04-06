@@ -33,6 +33,7 @@ public class Shadow : Character
         _floorRayCast = GetChildren().OfType<RayCast2D>().ToArray();
 
         GoLeft = !GoLeft;
+        WaitingDuration = WaitingDuration;
         _on_WaitingTimer_timeout();
     }
 

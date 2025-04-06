@@ -181,7 +181,7 @@ position = Vector2( 3682.5, -185 )
 
 [node name="Lanterne" parent="ParallaxBackground/near/Node2D/Tree7" instance=ExtResource( 12 )]
 position = Vector2( -536.25, -7.50002 )
-rotation = 0.170522
+rotation = 0.115696
 SwingDuration = 2.0
 SwimAngle = 10.0
 
@@ -193,6 +193,9 @@ shadow_item_cull_mask = 6
 [node name="LightOccluder2D" parent="ParallaxBackground/near/Node2D/Tree7/Lanterne" index="2"]
 light_mask = 2
 light_mask = 2
+
+[node name="AngleTween" parent="ParallaxBackground/near/Node2D/Tree7/Lanterne" index="3"]
+playback/active = false
 
 [node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
 position = Vector2( 1631.25, 489.681 )
@@ -318,6 +321,7 @@ anims/RESET = SubResource( 5 )
 anims/swing = SubResource( 6 )
 
 [node name="Van" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 11 )]
+light_mask = 7
 
 [node name="FloatingRock" parent="Game/Sections/MainGround/Camp" instance=ExtResource( 2 )]
 position = Vector2( 3451, -139 )
@@ -335,7 +339,7 @@ My father and I often went camping in the woods. We'd sleep in the caravan and s
 
 But I didn't hold it against him, I was a wimp, I just had to toughen up.
 
-On another trip, I remember finding a bird that had fallen out of its nest near the cabin where we were sleeping. I was horrified, but I thought, \"What would my father do?\" So I picked up a rock and threw it at the bird to finish it off... It was a strangely pleasant experience for me... My first time..."
+On another trip, I remember finding a bird that had fallen out of its nest in the attic of the cabin where we were sleeping. I was horrified, but I thought, \"What would my father do?\" So I picked up a rock and threw it at the bird to finish it off... It was a strangely pleasant experience for me... My first time..."
 
 [node name="ClimbingTree" type="Node2D" parent="Game/Sections/MainGround"]
 position = Vector2( 4391, -275 )
@@ -348,7 +352,7 @@ polygon = PoolVector2Array( 12, -1479, 120, -1493, 120, -1262, 124, -467, 247, -
 position = Vector2( 993, 0 )
 polygon = PoolVector2Array( 12, -1479, 120, -1493, 120, -1262, 133, 99, 186, 182, -107, 209, -35, 102, -31.6853, 55.8944, -425, 107, -435, 82, -260.082, 55.5381, -195, -15, -175, -6, -214, 48, -31, 25, -24.7517, -510.561, -174.585, -504.787, -328, -356, -353, -354, -326, -386, -399, -428, -303.9, -410.147, -218, -504, -589, -474, -611, -492, -22.2783, -575.735, -17.4064, -704.114, -368, -655, -332, -681, -157.786, -708.273, -137, -740, -126, -736, -132, -713, -19, -730, -15.8711, -805.599, -241, -775, -230, -800, -17, -828, -14.8765, -875.668, -78, -883, -109, -889, -99, -899, -15, -900 )
 
-[node name="Letter" parent="Game/Sections/MainGround/ClimbingTree/Tree2" instance=ExtResource( 6 )]
+[node name="EvidenceLetter_1" parent="Game/Sections/MainGround/ClimbingTree/Tree2" instance=ExtResource( 6 )]
 position = Vector2( -76, -882 )
 Identifier = "Evidence_1"
 IsClue = true
@@ -377,9 +381,12 @@ SwimAngle = 0.0
 [node name="Lanterne" parent="Game/Sections/MainGround/ClimbingTree/Lanterne" index="0"]
 texture_scale = 1.75
 
+[node name="AngleTween" parent="Game/Sections/MainGround/ClimbingTree/Lanterne" index="3"]
+playback/active = false
+
 [node name="Lanterne2" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
 position = Vector2( 580, 357 )
-rotation = -0.0897858
+rotation = 0.105723
 SwimAngle = 10.0
 
 [node name="AlarmLanternButton" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 14 )]
@@ -388,7 +395,7 @@ rotation = -0.371755
 
 [node name="AlarmLantern" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
 position = Vector2( 1292, 253 )
-rotation = -0.179572
+rotation = 0.211446
 __meta__ = {
 "_edit_group_": true
 }
@@ -396,6 +403,9 @@ SwimAngle = 20.0
 
 [node name="Lanterne" parent="Game/Sections/MainGround/ClimbingTree/AlarmLantern" index="0"]
 visible = false
+
+[node name="AngleTween" parent="Game/Sections/MainGround/ClimbingTree/AlarmLantern" index="3"]
+playback/active = false
 
 [node name="DeactivatableAlarmLight" parent="Game/Sections/MainGround/ClimbingTree/AlarmLantern" instance=ExtResource( 13 )]
 position = Vector2( 4.99976, 13 )

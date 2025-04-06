@@ -1,10 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/EndLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Decors/Tree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/Characters/Shadows/Shadow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/Letter/Letter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Decors/LightBeams/beam_circle.png" type="Texture" id=8]
+[ext_resource path="res://Decors/LightBeams/beam2.png" type="Texture" id=9]
+[ext_resource path="res://Decors/Car.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Decors/Lanterne.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Prefabs/AlarmLight/DeactivatableAlarmLight.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Prefabs/ActivationButton/ActivationButton.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0.854309, 1, 0.398438, 1 )
@@ -19,6 +27,38 @@ colors = PoolColorArray( 1, 1, 1, 1 )
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "Light Swing"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -115.0, -45.0, -45.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -115.0 ]
+}
+
 [node name="TestLevel" type="Node"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -31,6 +71,10 @@ color = Color( 0.25098, 0.25098, 0.25098, 1 )
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 7
 motion_mirroring = Vector2( 1280, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Sky"]
 light_mask = 7
@@ -40,9 +84,19 @@ scale = Vector2( 1, 1280 )
 texture = SubResource( 2 )
 centered = false
 
+[node name="DebugLight" type="Sprite" parent="ParallaxBackground/Sky"]
+visible = false
+position = Vector2( 5489, -107 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 8 )
+
 [node name="far" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 3
 motion_scale = Vector2( 0.2, 0.12 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/far"]
 light_mask = 7
@@ -63,13 +117,17 @@ position = Vector2( 1435, -295 )
 [node name="Ground" type="Sprite" parent="ParallaxBackground/far/Node2D"]
 light_mask = 7
 position = Vector2( 624.5, 706.458 )
-scale = Vector2( 2.0389, 1717.08 )
+scale = Vector2( 9.2389, 1717.08 )
 texture = SubResource( 4 )
 
 [node name="near" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color( 0.541176, 0.541176, 0.541176, 1 )
 light_mask = 3
 motion_scale = Vector2( 0.5, 0.3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/near"]
 scale = Vector2( 0.8, 0.8 )
@@ -89,32 +147,232 @@ position = Vector2( 1281.11, -193.333 )
 [node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
 light_mask = 3
 position = Vector2( 790.889, 489.681 )
-scale = Vector2( 1.8878, 1082.86 )
+scale = Vector2( 4.7878, 1082.86 )
 texture = SubResource( 4 )
 
 [node name="Game" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
 [node name="EndLevel" parent="Game" instance=ExtResource( 2 )]
+position = Vector2( 8012, 86 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Game"]
 color = Color( 0.298039, 0.298039, 0.298039, 1 )
 
-[node name="Decors" type="Node2D" parent="Game"]
-
-[node name="Grounds" type="Node2D" parent="Game"]
-
-[node name="Ground" parent="Game/Grounds" instance=ExtResource( 3 )]
+[node name="MainGround" parent="Game" instance=ExtResource( 3 )]
 position = Vector2( 20, -6 )
-polygon = PoolVector2Array( -207, -53, 14, -36, 127, -52, 125, 21, 81, 50, 24, 52, -235, 83 )
+polygon = PoolVector2Array( -684, -565, -668, -745, -508, -765, -533.463, -437.901, -212, -285, -268, -257, -539.01, -366.644, -560, -97, -463, 3, 14, -36, 127, -52, 125, 21, 275, 69, -10, 2361, -1244, 2493, -1047, 1574, -1692, 573, -1604, 3, -864, 3, -796, -77 )
 
-[node name="Letters" type="Node2D" parent="Game"]
+[node name="Ground_2" parent="Game/MainGround" instance=ExtResource( 3 )]
+position = Vector2( 505, 163 )
+polygon = PoolVector2Array( -93.1846, -19.0812, 14, -36, 127, -52, 253.549, -37.2537, 1001, 68, 1000.11, 81.7765, 1140, 118, 1127, 148, 1091.01, 138.575, 1073, 134, 1001, 115, 1014, 191, 1073, 134, 1091, 138, 1018.1, 226.223, 1053.2, 527.913, 1392, 2161, 78.015, 2089.84, -138.693, 221.705, -161.448, 131.751 )
+
+[node name="Shadow" parent="Game/MainGround/Ground_2" instance=ExtResource( 6 )]
+position = Vector2( 119, -79 )
+Speed = 20.0
+WaitingDuration = 5.0
+GoLeft = true
+
+[node name="Ground_3" parent="Game/MainGround" instance=ExtResource( 3 )]
+position = Vector2( 1947, 269 )
+polygon = PoolVector2Array( -93.1846, -19.0812, 14, -36, 127, -52, 253.549, -37.2537, 1000.11, 81.7765, 1053.2, 527.913, 1526.71, 1975.36, 78.015, 2089.84, -138.693, 221.705, -218, 150, -93, 24 )
+
+[node name="Shadow" parent="Game/MainGround/Ground_3" instance=ExtResource( 6 )]
+position = Vector2( 119, -79 )
+Speed = 20.0
+WaitingDuration = 5.0
+GoLeft = true
+
+[node name="AlarmLight" parent="Game/MainGround/Ground_3/Shadow/Appearance" index="1"]
+rotation = -2.00713
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/MainGround/Ground_3/Shadow"]
+autoplay = "Light Swing"
+"anims/Light Swing" = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="Tree" parent="Game/MainGround/Ground_3" instance=ExtResource( 5 )]
+position = Vector2( 552, -123 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="MoveToCityLetter" parent="Game/MainGround/Ground_3" instance=ExtResource( 7 )]
+position = Vector2( 692, -142 )
+Content = "[right]March19th 1995[/right]
+
+When I was 15, my father decided we had to move to the city. He said he'd have more opportunities to work, and he couldn't take care of our house in the country anymore.
+
+No worries for me, I had no friends... It didn't matter where I was, my life was a living hell."
+
+[node name="Ground_4" parent="Game/MainGround" instance=ExtResource( 3 )]
+position = Vector2( 3083, 286 )
+polygon = PoolVector2Array( -82, -42, 14, -36, 333, -59, 1305, 1945, 689, 2017, -41, 44 )
+
+[node name="Plateforms" type="Node2D" parent="Game/MainGround"]
+
+[node name="pt_1" parent="Game/MainGround/Plateforms" instance=ExtResource( 3 )]
+position = Vector2( 3631, 240 )
+polygon = PoolVector2Array( -84, -16, 14, -36, 273, -49, 260, 36, 81, 50, 24, 52, -84, 48 )
+
+[node name="Tree" parent="Game/MainGround/Plateforms/pt_1" instance=ExtResource( 5 )]
+position = Vector2( 106, -178 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="pt_2" parent="Game/MainGround/Plateforms" instance=ExtResource( 3 )]
+position = Vector2( 4004, 263 )
+polygon = PoolVector2Array( -37, 103, 14, -36, 145, -41, 194, 67, 242, 189, 98, 171 )
+
+[node name="Tree" parent="Game/MainGround/Plateforms/pt_2" instance=ExtResource( 5 )]
+position = Vector2( 93, -155 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="pt_3" parent="Game/MainGround/Plateforms" instance=ExtResource( 3 )]
+position = Vector2( 4350, 231 )
+polygon = PoolVector2Array( -88, 104, -43, -56, 145, -41, 271, 18, 127, 121 )
+
+[node name="BoilerClueLetter" parent="Game/MainGround/Plateforms" instance=ExtResource( 7 )]
+position = Vector2( 4748, 656 )
+Identifier = "BoilerClue"
+Content = "[right]April 7th 2025[/right]
+
+I don't like boiler rooms, I'm afraid of them. I don't know where that comes from, because I don't remember having that fear as a child. But I do know that I don't like them! 
+
+I often have a nightmare where I see a man, his head charred, coming out of my building's boiler room and climbing the stairs towards me.... I don't know where this fear comes from, but I can't shake it!"
+
+[node name="CabaneZone" parent="Game/MainGround" instance=ExtResource( 3 )]
+position = Vector2( 4778, 194 )
+polygon = PoolVector2Array( 93, -4, -47, -8, -92, -31, 12, -54, 643, -161, 2324, -108, 2290, -4, 2461, 3, 2404, -115, 2853, -93, 2746, 21, 2910, 24, 3017, -93, 3324, -56, 3291, -200, 2980, -227, 3076, -753, 3642, -676, 3854, -491, 3907, -58, 3917, 1979, 1404, 2027, 689, 2017, -139, 743, -276, 662, -389, 598, -351, 564, -162.797, 532.598, 16, 487, 36, 434, -61, 444, -197.208, 472.631, -310, 481, -322, 458, -216.634, 438.779, -232, 412, -232, 380.549, -263, 382, -267, 354, -232, 349.085, -232, 308, 28, 59 )
+
+[node name="Car" parent="Game/MainGround/CabaneZone" instance=ExtResource( 10 )]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1526, -148 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Building" parent="Game/MainGround/CabaneZone" instance=ExtResource( 3 )]
+position = Vector2( 2022, -252 )
+scale = Vector2( 3, 3 )
+polygon = PoolVector2Array( -37.3335, 26, 3, 25, 80, 28, 81, 50, -73, 44.6667, -53, 36, -43.6667, 29.6667 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CabaneDecor" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building"]
+position = Vector2( 19, 26 )
+z_index = 1
+color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+polygon = PoolVector2Array( -50, 0, -50, -11.0386, -50, -27, -57, -27, -26.3335, -51, -15, -47, -16.6667, -43.6667, -16, -41.6667, -14.6667, -39.6667, -10.6667, -38.3333, -4.3335, -39.3333, -2, -40.3333, -1.3335, -43.6667, -3.3335, -47.6667, -7.3335, -50.6667, -9.59953, -50.8003, -15, -47, -26.3335, -51, -2, -74, 67, -30, 55, -30, 55, 2, 55, 2, -19, 0, -22.6665, -10.3333, 45.3335, -11, 45.3335, -24.6667, -25, -25, -22.6665, -10.3333, -19, 0, -33, 0, -33, -27, -43, -27, -46, -27, -46, 0 )
+
+[node name="Windows" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building/CabaneDecor"]
+position = Vector2( -16, -18.3333 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -1.33325, -7, -1, -1.33333, -9.33325, -1, -9, 1, -1, 0.666667, -0.666504, 8.66667, 2, 9, 1.66675, 1.33333, 9, 1.33333, 8.66675, -1.33333, 1.3335, -1, 1.66675, -7.33333 )
+
+[node name="wall" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building/CabaneDecor"]
+position = Vector2( -0.666504, -0.333328 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8.33325, -26, -7.33325, -8, 1.66675, -8, 1.66675, -26.6667 )
+
+[node name="wall2" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building/CabaneDecor"]
+position = Vector2( 26.3335, -0.666662 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -8.33325, -26, -7.33325, -8, 1.66675, -8, 1.66675, -26.6667 )
+
+[node name="Windows2" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building/CabaneDecor"]
+position = Vector2( 10, -18.6667 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -1.33325, -7, -1, -1.33333, -9.33325, -1, -9, 1, -1, 0.666667, -0.666504, 8.66667, 2, 9, 1.76949, 3.69696, 1.66675, 1.33333, 9, 1.33333, 8.66675, -1.33333, 1.3335, -1, 1.66675, -7.33333 )
+
+[node name="Windows3" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building/CabaneDecor"]
+position = Vector2( 37, -18.6667 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -1.33325, -7, -1, -1.33333, -9.33325, -1, -9, 1, -1, 0.666667, -0.666504, 8.66667, 2, 9, 1.76949, 3.69696, 1.66675, 1.33333, 9, 1.33333, 8.66675, -1.33333, 1.3335, -1, 1.66675, -7.33333 )
+
+[node name="Windows4" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building/CabaneDecor"]
+position = Vector2( -8.66675, -45.6667 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -1.33325, -7, -1, -1.33333, -9.33325, -1, -9, 1, -1, 0.666667, -0.666504, 8.66667, 2, 9, 1.66675, 1.33333, 9, 1.33333, 8.66675, -1.33333, 1.3335, -1, 1.66675, -7.33333 )
+
+[node name="Roof" parent="Game/MainGround/CabaneZone/Building" instance=ExtResource( 3 )]
+position = Vector2( -38.3333, -53 )
+z_index = 2
+color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+polygon = PoolVector2Array( 56.3335, -1.33334, 107, 15.3333, 123, 48.3333, 81.6667, 49, 85, 33.3333, 55.6667, 6.33334, 35.3335, 25.6667, 24, 38, 20.6667, 43.3333, 19, 48, 60.6667, 47.3333, 60.6667, 49.6667, 2.33325, 51.6667, 22, 16 )
+
+[node name="Lamp" type="Polygon2D" parent="Game/MainGround/CabaneZone/Building"]
+position = Vector2( -33.6667, -4.99999 )
+color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+polygon = PoolVector2Array( -0.333252, 0, -1.66675, -2, -4, -2.66667, -7.33325, -2, -8.33325, -0.333334, -4.66675, 3.33333, -14, 3, -9.66675, 0, -8.33325, -2.66667, -4, -4, -1.33325, -3, 0.333252, -1 )
+
+[node name="Light2D" type="Light2D" parent="Game/MainGround/CabaneZone/Building/Lamp"]
+position = Vector2( -9, 2 )
+texture = ExtResource( 9 )
+offset = Vector2( 0, 25 )
+texture_scale = 0.2
+energy = 0.8
+range_layer_min = -10
+range_layer_max = 10
+
+[node name="EvidenceLetter_2" parent="Game/MainGround/CabaneZone" instance=ExtResource( 7 )]
+position = Vector2( 2021, -311 )
+Identifier = "Evidence_2"
+IsClue = true
+Content = "[right]May 15th 2022[/right]
+
+I returned to the shack I'd known, but there I saw a woman get out of a car parked out front, climb the steps and then stop on the porch to look for the keys. She was carrying a six-pack of beer! I suddenly felt a fear, the fear of suddenly feeling a blow on my back, on my head.
+
+Without thinking, I rushed towards the woman, grabbed an axe lying against a stump; then, blinded by fear and hatred, [color=#ac3232] I struck several blows into her back. [/color] She fell against the door, unable to move... the broken bottles at her side, spilling their foul-smelling liquid with the blood that flowed abundantly."
+
+[node name="Tree" parent="Game/MainGround/CabaneZone" instance=ExtResource( 5 )]
+position = Vector2( 583, -288 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Lanterne" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
+position = Vector2( -186, -29 )
+rotation = 0.60002
+
+[node name="AlarmLantern" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
+position = Vector2( 138, -22 )
+rotation = 0.133046
+__meta__ = {
+"_edit_group_": true
+}
+SwingDuration = 2.0
+SwimAngle = 85.0
+
+[node name="Lanterne" parent="Game/MainGround/CabaneZone/Tree/AlarmLantern" index="0"]
+visible = false
+
+[node name="DeactivatableAlarmLight" parent="Game/MainGround/CabaneZone/Tree/AlarmLantern" instance=ExtResource( 12 )]
+position = Vector2( 4.99976, 13 )
+scale = Vector2( 2.055, 1.416 )
+ButtonPath = NodePath("../../ActivationButton")
+
+[node name="ActivationButton" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 13 )]
+position = Vector2( 81, 115 )
+
+[node name="Shadow" parent="Game/MainGround/CabaneZone" instance=ExtResource( 6 )]
+position = Vector2( 2469, -138 )
+Speed = 30.0
+WaitingDuration = 1.0
+
+[node name="AlarmLight" parent="Game/MainGround/CabaneZone/Shadow/Appearance" index="1"]
+rotation = -1.16937
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( -125, -87 )
+position = Vector2( 46, -74 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 current = true
 smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[editable path="Game/MainGround/Ground_3/Shadow"]
+[editable path="Game/MainGround/CabaneZone/Tree/AlarmLantern"]
+[editable path="Game/MainGround/CabaneZone/Shadow"]
