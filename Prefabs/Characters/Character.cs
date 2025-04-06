@@ -55,7 +55,7 @@ public abstract class Character : KinematicBody2D
         }
         else if(!IsOnFloor())
         {
-            if(IsOnCeiling())
+            if(IsOnCeiling() && _verticalSpeed < 0)
             {
                 _verticalSpeed = 0;
             }
