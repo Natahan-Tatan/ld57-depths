@@ -22,7 +22,7 @@ public class Character : KinematicBody2D
     protected Action _currentAction = Action.IDLE;
     private float _verticalSpeed = 0f;
 
-    private Node2D _appearance;
+    protected Node2D _appearance;
 
     public override void _Ready()
     {
@@ -49,12 +49,17 @@ public class Character : KinematicBody2D
             movement += new Vector2(Speed * 300 * delta, 0);
         }
 
-        if(_currentAction.Contains(Action.JUMP) && IsOnFloor() && _verticalSpeed == 0f)
+        if(_currentAction.Contains(Action.JUMP) && IsOnFloor() && !IsOnCeiling() && _verticalSpeed == 0f)
         {
             _verticalSpeed = -Jump*30;
         }
         else if(!IsOnFloor())
         {
+            if(IsOnCeiling())
+            {
+                _verticalSpeed = 0;
+            }
+            
             _verticalSpeed += Gravity * 30;
         }
         else

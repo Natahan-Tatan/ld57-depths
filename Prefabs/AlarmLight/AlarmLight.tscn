@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/AlarmLight/beam_alarm.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/AlarmLight/AlarmLight.cs" type="Script" id=2]
+
+[node name="AlarmLight" type="Light2D" groups=["Alarms"]]
+light_mask = 15
+texture = ExtResource( 1 )
+offset = Vector2( 0, 125 )
+energy = 1.5
+mode = 2
+range_layer_min = -10
+range_layer_max = 10
+shadow_enabled = true
+shadow_color = Color( 1, 1, 1, 0 )
+script = ExtResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -10, 0 )
+enabled = true
+cast_to = Vector2( -64, 248 )
+collision_mask = 5
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 5, 0 )
+enabled = true
+cast_to = Vector2( 68, 248 )
+collision_mask = 5
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( -32, 247 )
+collision_mask = 5
+
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( 29, 247 )
+collision_mask = 5
+
+[node name="RayCast2D5" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( 0, 248 )
+collision_mask = 5
+
+[node name="RayCast2D8" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( -15, 246 )
+collision_mask = 5
+
+[node name="RayCast2D9" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( 16, 244 )
+collision_mask = 5
+
+[node name="RayCast2D6" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( -50, 244 )
+collision_mask = 5
+
+[node name="RayCast2D7" type="RayCast2D" parent="."]
+position = Vector2( -3, 0 )
+enabled = true
+cast_to = Vector2( 54, 244 )
+collision_mask = 5

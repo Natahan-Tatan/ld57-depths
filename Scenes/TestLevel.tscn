@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://Decors/Lanterne.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Letter/Letter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/AlarmLight/AlarmLight.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0, 0.344513, 0.832031, 1 )
+colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0.398438, 0.647522, 1, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -34,7 +35,7 @@ layer = -1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]
 light_mask = 3
-color = Color( 0.4, 0.4, 0.4, 1 )
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 7
@@ -74,7 +75,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = -0.335103
+rotation = 0.118844
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -136,7 +137,6 @@ scale = Vector2( -1, 1 )
 position = Vector2( -78.8907, -6.55473 )
 energy = 0.5
 range_item_cull_mask = 2
-shadow_enabled = true
 shadow_item_cull_mask = 2
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/near/Node2D/Car"]
@@ -149,7 +149,7 @@ light_mask = 2
 follow_viewport_enable = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Game"]
-color = Color( 0.329412, 0.329412, 0.329412, 1 )
+color = Color( 0.298039, 0.298039, 0.298039, 1 )
 
 [node name="Decors" type="Node2D" parent="Game"]
 
@@ -159,7 +159,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = -0.251328
+rotation = 0.620561
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6
@@ -176,15 +176,13 @@ color = Color( 0, 0, 0, 1 )
 [node name="Ground" type="Node2D" parent="Game"]
 
 [node name="MainGround" parent="Game/Ground" instance=ExtResource( 2 )]
+polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2286, -22, 1615, 199, 1150, 396, -127, 329, -41, 44 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Polygon2D" parent="Game/Ground/MainGround" index="1"]
-polygon = PoolVector2Array( -275, -45, 14, -36, 85, -14, 96, 67, 340, 48, 548, 53, 778, -32, 1943, -37, 2946, 54, 2788, 281, 515, 311, -289, 432, -304, 135 )
-
-[node name="CollisionPolygon2D" parent="Game/Ground/MainGround" index="2"]
-polygon = PoolVector2Array( -275, -45, 14, -36, 85, -14, 96, 67, 340, 48, 548, 53, 778, -32, 1943, -37, 2946, 54, 2788, 281, 515, 311, -289, 432, -304, 135 )
+[node name="CollisionPolygon2D" parent="Game/Ground/MainGround/StaticBody2D" index="0"]
+polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2286, -22, 1615, 199, 1150, 396, -127, 329, -41, 44 )
 
 [node name="Letters" type="Node2D" parent="Game"]
 
@@ -199,13 +197,22 @@ I don't know where I stand anymore... I'm obsessed with something, but I can't f
 People close to me don't understand me anymore, they say I work too much, that I come home late at night... Yet I'm sure it's still light out when I leave work. Maybe they're the ones losing their minds."
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 0, -208 )
+position = Vector2( 1440, -107 )
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 current = true
 smoothing_enabled = true
 
+[node name="Light2D" parent="Game" instance=ExtResource( 8 )]
+
+[node name="AlarmLight" parent="Game" instance=ExtResource( 8 )]
+position = Vector2( 1755, -310 )
+scale = Vector2( 2.42667, 1.64 )
+
 [node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[node name="Ground" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1764, -203 )
 
 [editable path="ParallaxBackground/far/Node2D/TreeLight/Lanterne"]
 [editable path="ParallaxBackground/near/Node2D/Car"]
