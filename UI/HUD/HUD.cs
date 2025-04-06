@@ -25,7 +25,7 @@ public class HUD : CanvasLayer
 
     public void _on_GameOverTimer_Timeout()
     {
-        GetTree().ChangeScene("res://UI//Screen//GameOver.tscn");
+        GetTree().ChangeScene("res://UI//Screens//GameOver.tscn");
     }
 
     public void _on_EndLevelTimer_Timeout()

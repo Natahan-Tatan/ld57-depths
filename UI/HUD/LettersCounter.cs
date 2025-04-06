@@ -10,6 +10,11 @@ public class LettersCounter : PanelContainer
     private Label _label;
     public override void _Ready()
     {
+        foreach(var letter in GetTree().GetNodesInGroup("Letters").OfType<LetterArea>())
+        {
+            letter.Connect(nameof(LetterArea.LetterDiscovered), this, nameof(_on_Letters_LetterDiscovered));
+        }
+        
         _label = GetNode<Label>("HBox/Label");
 
         _UpdateLabel();
