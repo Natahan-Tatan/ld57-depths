@@ -50,8 +50,8 @@ margin_right = 1280.0
 margin_bottom = 97.0
 custom_fonts/normal_font = SubResource( 7 )
 bbcode_enabled = true
-bbcode_text = "[center][shake rate=2.0 level=2 connected=1]A criminel fall asleep 💤 ...[/shake][/center]"
-text = "A criminel fall asleep 💤 ..."
+bbcode_text = "[center][shake rate=2.0 level=2 connected=1]A criminal fall asleep 💤 ...[/shake][/center]"
+text = "A criminal fall asleep 💤 ..."
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -70,9 +70,8 @@ texture = SubResource( 6 )
 stretch_mode = 6
 
 [node name="St_1" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
-visible = false
-margin_left = 114.0
-margin_right = 514.0
+margin_left = 880.0
+margin_right = 1280.0
 margin_bottom = 524.0
 rect_min_size = Vector2( 400, 0 )
 custom_fonts/normal_font = SubResource( 8 )
@@ -128,6 +127,7 @@ text = "There are 3 layers. At the end of each section, if you haven't attracted
 Once in the lowest layer, if you've found all the evidence, you can leave..."
 
 [node name="St_5" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+visible = false
 margin_left = 880.0
 margin_right = 1280.0
 margin_bottom = 524.0
