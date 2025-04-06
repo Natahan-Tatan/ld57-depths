@@ -72,4 +72,9 @@ public class Shadow : Character
 
         GoLeft = !GoLeft;
     }
+
+    protected override void _OutOfBound()
+    {
+        QueueFree();
+    }
 }

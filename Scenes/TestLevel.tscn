@@ -81,7 +81,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = 0.341212
+rotation = 0.283519
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -169,7 +169,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = -0.660122
+rotation = -0.251327
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6

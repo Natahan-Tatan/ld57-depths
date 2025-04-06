@@ -1,0 +1,278 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://UI/Fonts/Noto Sans/Merge-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Screens/arrow_stay3.png" type="Texture" id=2]
+[ext_resource path="res://UI/Screens/prisonner1.png" type="Texture" id=3]
+[ext_resource path="res://UI/Screens/prisonner4.png" type="Texture" id=4]
+[ext_resource path="res://UI/Screens/prisonner2.png" type="Texture" id=5]
+[ext_resource path="res://UI/Screens/GameOver.theme" type="Theme" id=6]
+[ext_resource path="res://UI/Screens/LevelTransition.cs" type="Script" id=7]
+[ext_resource path="res://UI/Screens/arrow2.png" type="Texture" id=8]
+[ext_resource path="res://UI/Screens/arrow1.png" type="Texture" id=9]
+[ext_resource path="res://UI/Screens/arrow3.png" type="Texture" id=10]
+[ext_resource path="res://UI/Screens/arrow_stay1.png" type="Texture" id=11]
+[ext_resource path="res://UI/Screens/prisonner_cry4.png" type="Texture" id=12]
+[ext_resource path="res://UI/Screens/arrow_stay2.png" type="Texture" id=13]
+[ext_resource path="res://UI/Screens/prisonner3.png" type="Texture" id=14]
+[ext_resource path="res://UI/Screens/prisonner_cry1.png" type="Texture" id=15]
+[ext_resource path="res://UI/Screens/prisonner_cry3.png" type="Texture" id=16]
+[ext_resource path="res://UI/Screens/prisonner_cry2.png" type="Texture" id=17]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 70
+outline_size = 2
+outline_color = Color( 0, 0.235294, 0.552941, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 70
+outline_size = 2
+outline_color = Color( 0.439216, 0.72549, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 70
+outline_size = 2
+outline_color = Color( 0.541176, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 70
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="AnimatedTexture" id=10]
+frames = 3
+fps = 2.0
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 3 )
+frame_2/delay_sec = 3.0
+
+[sub_resource type="AnimatedTexture" id=14]
+frames = 14
+oneshot = true
+fps = 2.0
+frame_0/texture = ExtResource( 3 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 14 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 4 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 15 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 17 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 16 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 12 )
+frame_7/delay_sec = 0.0
+frame_8/texture = ExtResource( 16 )
+frame_8/delay_sec = 0.0
+frame_9/texture = ExtResource( 12 )
+frame_9/delay_sec = 0.0
+frame_10/texture = ExtResource( 16 )
+frame_10/delay_sec = 2.0
+frame_11/texture = ExtResource( 12 )
+frame_11/delay_sec = 2.0
+frame_12/texture = ExtResource( 16 )
+frame_12/delay_sec = 3.0
+frame_13/texture = ExtResource( 12 )
+frame_13/delay_sec = 3.0
+
+[sub_resource type="AnimatedTexture" id=7]
+frames = 3
+frame_0/texture = ExtResource( 9 )
+frame_1/texture = ExtResource( 8 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 10 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="AnimatedTexture" id=11]
+frames = 3
+frame_0/texture = ExtResource( 11 )
+frame_1/texture = ExtResource( 13 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 2 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=15]
+size = 35
+font_data = ExtResource( 1 )
+
+[node name="LevelTansition" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 7 )
+LightLevel_1 = "res://Scenes/Levels/1_1.tscn"
+DeepLevel_1 = "res://Scenes/Levels/2_1.tscn"
+DeepestLevel_1 = "res://Scenes/Levels/3_1.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="Light" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+margin_right = 1280.0
+margin_bottom = 97.0
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=10.0 level=10 connected=1]Light sleep[/shake][/center]"
+text = "Light sleep"
+fit_content_height = true
+
+[node name="Deeper" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+margin_top = 101.0
+margin_right = 1280.0
+margin_bottom = 198.0
+custom_fonts/normal_font = SubResource( 8 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=4.0 level=10 connected=1]Deeper dream[/shake][/center]"
+text = "Deeper dream"
+fit_content_height = true
+
+[node name="Deepest" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+margin_top = 202.0
+margin_right = 1280.0
+margin_bottom = 299.0
+custom_fonts/normal_font = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=2
+.0 level=10 connected=1]Deepest depths[/shake][/center]"
+text = "Deepest depths"
+fit_content_height = true
+
+[node name="Congrat" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 1280.0
+margin_bottom = 97.0
+custom_fonts/normal_font = SubResource( 13 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=2
+.0 level=10 connected=1]🎉 Congratulations ! 🎉[/shake][/center]"
+text = "🎉 Congratulations ! 🎉"
+fit_content_height = true
+
+[node name="MissClues" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 101.0
+margin_right = 1280.0
+margin_bottom = 156.0
+custom_colors/font_color = Color( 0.776471, 0.67451, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "You miss some clues !"
+align = 1
+
+[node name="Thanks!" type="Label" parent="VBoxContainer"]
+margin_top = 101.0
+margin_right = 1280.0
+margin_bottom = 156.0
+custom_colors/font_color = Color( 0.776471, 0.67451, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Thanks for playing !"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 160.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Prisonner" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 615.0
+margin_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 10 )
+stretch_mode = 5
+
+[node name="Prisonner_crying" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+margin_right = 830.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 14 )
+stretch_mode = 5
+
+[node name="Arrow" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 980.0
+margin_right = 1280.0
+margin_bottom = 524.0
+texture = SubResource( 7 )
+stretch_mode = 4
+
+[node name="ArrowStay" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 980.0
+margin_right = 1280.0
+margin_bottom = 524.0
+texture = SubResource( 11 )
+stretch_mode = 4
+
+[node name="Outro" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+margin_left = 880.0
+margin_right = 1280.0
+margin_bottom = 560.0
+rect_min_size = Vector2( 400, 0 )
+custom_fonts/normal_font = SubResource( 15 )
+bbcode_enabled = true
+bbcode_text = "[center]You've managed, with courage and intelligence, to gather all the evidence to send this monster to the shade for the rest of his days.
+
+You're the pride and joy of the criminal division![/center]"
+text = "You've managed, with courage and intelligence, to gather all the evidence to send this monster to the shade for the rest of his days.
+
+You're the pride and joy of the criminal division!"
+fit_content_height = true
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 655.0
+margin_right = 1280.0
+margin_bottom = 746.0
+alignment = 1
+
+[node name="ContinueButton" type="ToolButton" parent="VBoxContainer/Buttons"]
+margin_left = 506.0
+margin_right = 774.0
+margin_bottom = 91.0
+text = "Continue"
+
+[node name="LevelsButtons" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 629.0
+margin_right = 1280.0
+margin_bottom = 720.0
+alignment = 1
+
+[node name="LightButton" type="ToolButton" parent="VBoxContainer/LevelsButtons"]
+margin_left = 37.0
+margin_right = 346.0
+margin_bottom = 91.0
+text = "Up to light"
+
+[node name="DeeperButton" type="ToolButton" parent="VBoxContainer/LevelsButtons"]
+margin_left = 396.0
+margin_right = 780.0
+margin_bottom = 91.0
+text = "Up to deeper"
+
+[node name="DeepestButton" type="ToolButton" parent="VBoxContainer/LevelsButtons"]
+margin_left = 830.0
+margin_right = 1242.0
+margin_bottom = 91.0
+text = "Stay in depths"

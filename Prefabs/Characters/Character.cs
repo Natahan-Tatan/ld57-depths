@@ -1,6 +1,6 @@
 using System.Linq;
 using Godot;
-public class Character : KinematicBody2D
+public abstract class Character : KinematicBody2D
 {
     public enum Action: int
     {
@@ -80,7 +80,15 @@ public class Character : KinematicBody2D
                 MoveAndSlideWithSnap(movement, Vector2.Down*2, Vector2.Up, stopOnSlope: true);
             }
         }
+
+        if(this.Position.y > 2000)
+        {
+            _OutOfBound();
+        }
     }
+
+
+    protected abstract void _OutOfBound();
 }
 
 public static class CharacterActionExtends

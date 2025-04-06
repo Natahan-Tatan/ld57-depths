@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/prisonner3.png-20fd0dda14b1b94febd7f702e24dc3e4.stex"
+path="res://.import/arrow3.png-765800cbc87faa1d7fd579f92d632724.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/GameOver/prisonner3.png"
-dest_files=[ "res://.import/prisonner3.png-20fd0dda14b1b94febd7f702e24dc3e4.stex" ]
+source_file="res://UI/Screens/arrow3.png"
+dest_files=[ "res://.import/arrow3.png-765800cbc87faa1d7fd579f92d632724.stex" ]
 
 [params]
 

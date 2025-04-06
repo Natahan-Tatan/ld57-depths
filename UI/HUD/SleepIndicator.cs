@@ -4,6 +4,9 @@ using System.Linq;
 
 public class SleepIndicator : PanelContainer
 {
+    // Used by transitional scene to know which kind of level use for the next
+    public static int LastRemaining;
+
     [Signal]
     public delegate void PrisonnerWakeUp();
 
@@ -11,7 +14,7 @@ public class SleepIndicator : PanelContainer
     {
         get => _remaining;
         set{
-            _remaining = value;
+            LastRemaining = _remaining = value;
 
             if(_remaining <= 0)
             {
@@ -33,6 +36,8 @@ public class SleepIndicator : PanelContainer
             }
             // Ajout d'autres types d'alarmes ici
         }
+
+        GetTree().GetFirstNodeInGroup("Player").Connect(nameof(Player.FallOutOfBound), this, nameof(_on_AlarmLight_PlayerDetected));
 
         _label = GetNode<RichTextLabel>("RichTextLabel");
         _UpdateIndicator();

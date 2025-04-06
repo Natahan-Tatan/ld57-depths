@@ -27,6 +27,8 @@ public class LetterArea : Area2D
 
     public bool IsOpened => HaveBeenOpened[Identifier];
 
+    public bool ClueTested {get; protected set;}
+
     private AnimatedSprite _animatedSprite;
     private Label _label;
     private Letter _letterUI;

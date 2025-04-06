@@ -2,14 +2,21 @@ using Godot;
 
 public class Player : Character
 {
+    [Signal]
+    public delegate void FallOutOfBound();
+
     public bool IsRecovering {get; protected set;} = false;
 
     private Timer _recoverTimer;
     private int _recoveringAnimCounter = 3;
 
+    private Vector2 _initialPosition;
+
     public override void _Ready()
     {
         base._Ready();
+
+        _initialPosition = Position;
 
         foreach(var alarm in GetTree().GetNodesInGroup("Alarms"))
         {
@@ -79,5 +86,13 @@ public class Player : Character
         {
             _appearance.Visible = true;
         }
+    }
+
+    protected override void _OutOfBound()
+    {
+        EmitSignal(nameof(FallOutOfBound));
+        Position = _initialPosition;
+        IsRecovering = true;
+        _recoverTimer.Start();
     }
 }
