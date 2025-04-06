@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Prefabs/AlarmLight/AlarmLight.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/AlarmLight/DeactivatableAlarmLight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Prefabs/ActivationButton/ActivationButton.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/Characters/Shadows/Shadow.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 0.398438, 0.647522, 1, 1 )
@@ -77,7 +78,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = 0.338269
+rotation = -0.179088
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -88,9 +89,6 @@ shadow_item_cull_mask = 4
 [node name="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="2"]
 light_mask = 4
 light_mask = 4
-
-[node name="AngleTween" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="3"]
-playback/active = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight"]
 light_mask = 4
@@ -151,8 +149,8 @@ light_mask = 2
 follow_viewport_enable = true
 
 [node name="ActivationButton" parent="Game" instance=ExtResource( 10 )]
-position = Vector2( 1318, 56.9999 )
-rotation = 0.510512
+position = Vector2( 1473, 63 )
+rotation = -0.193686
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Game"]
 color = Color( 0.298039, 0.298039, 0.298039, 1 )
@@ -165,13 +163,10 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = 0.691617
+rotation = -0.179028
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6
-
-[node name="AngleTween" parent="Game/Decors/Tree/Lanterne" index="3"]
-playback/active = false
 
 [node name="Car" parent="Game/Decors" instance=ExtResource( 4 )]
 modulate = Color( 0, 0, 0, 1 )
@@ -179,16 +174,20 @@ position = Vector2( 412, 32 )
 rotation = 0.0693959
 color = Color( 0, 0, 0, 1 )
 
+[node name="Shadow" parent="Game" instance=ExtResource( 11 )]
+position = Vector2( 2403, -42 )
+GoLeft = true
+
 [node name="Ground" type="Node2D" parent="Game"]
 
 [node name="MainGround" parent="Game/Ground" instance=ExtResource( 2 )]
-polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2286, -22, 1615, 199, 1150, 396, -127, 329, -41, 44 )
+polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2295, -19, 2290, 0, 2603, -1, 2512, 117, 1615, 199, 1150, 396, -127, 329, -41, 44 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionPolygon2D" parent="Game/Ground/MainGround/StaticBody2D" index="0"]
-polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2286, -22, 1615, 199, 1150, 396, -127, 329, -41, 44 )
+polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2295, -19, 2290, 0, 2603, -1, 2512, 117, 1615, 199, 1150, 396, -127, 329, -41, 44 )
 
 [node name="Letters" type="Node2D" parent="Game"]
 
@@ -203,7 +202,7 @@ I don't know where I stand anymore... I'm obsessed with something, but I can't f
 People close to me don't understand me anymore, they say I work too much, that I come home late at night... Yet I'm sure it's still light out when I leave work. Maybe they're the ones losing their minds."
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 1208, -67 )
+position = Vector2( 1328, 37 )
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 current = true
@@ -220,6 +219,10 @@ ButtonPath = NodePath("../ActivationButton")
 
 [node name="Ground" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1764, -203 )
+
+[node name="Ground2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2275, -100 )
+polygon = PoolVector2Array( 39, 15, 68, -12, 94, -1, 102, 27, 61, 56 )
 
 [editable path="ParallaxBackground/far/Node2D/TreeLight/Lanterne"]
 [editable path="ParallaxBackground/near/Node2D/Car"]

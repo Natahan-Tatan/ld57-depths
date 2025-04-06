@@ -34,9 +34,8 @@ public class Player : Character
         IsRecovering = false;
     }
 
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
-        base._Process(delta);
 
         if(Input.IsActionPressed("Left"))
         {
@@ -64,10 +63,7 @@ public class Player : Character
         {
             _currentAction &= ~Action.JUMP;
         }
-    }
 
-    public override void _PhysicsProcess(float delta)
-    {
         base._PhysicsProcess(delta);
 
         if(IsRecovering)

@@ -11,7 +11,10 @@ public class Ground : Polygon2D
         public override void _Ready()
         {
             _collisionBox = GetNode<CollisionPolygon2D>("StaticBody2D/CollisionPolygon2D");
-            _lightOccluderPolygon = GetNode<LightOccluder2D>("LightOccluder2D").Occluder;
+            _lightOccluderPolygon = new OccluderPolygon2D();
+            GetNode<LightOccluder2D>("LightOccluder2D").Occluder = _lightOccluderPolygon;
+
+            _lightOccluderPolygon.Polygon = _collisionBox.Polygon = Polygon;
         }
         
         public override void _Process(float delta)
