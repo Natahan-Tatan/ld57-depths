@@ -14,6 +14,11 @@ public class LettersCounter : PanelContainer
         {
             letter.Connect(nameof(LetterArea.LetterDiscovered), this, nameof(_on_Letters_LetterDiscovered));
             totalLetters++;
+
+            if(letter.IsOpened)
+            {
+                lettersOpened++;
+            }
         }
 
         _label = GetNode<Label>("HBox/Label");

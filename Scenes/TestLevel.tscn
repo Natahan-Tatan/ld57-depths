@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
@@ -30,6 +30,9 @@ gradient = SubResource( 3 )
 
 [sub_resource type="OccluderPolygon2D" id=6]
 polygon = PoolVector2Array( -74.2999, 21.356, -111.777, 22.6648, -126.304, 0.65834, -164.376, 20.7493, -117.543, 36.6245, -69.985, 37.4653 )
+
+[sub_resource type="OccluderPolygon2D" id=7]
+polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2295, -19, 2290, 0, 2603, -1, 2512, 117, 1615, 199, 1150, 396, -127, 329, -41, 44 )
 
 [node name="TestLevel" type="Node"]
 
@@ -78,7 +81,7 @@ position = Vector2( 2145, -287.5 )
 
 [node name="Lanterne" parent="ParallaxBackground/far/Node2D/TreeLight" instance=ExtResource( 5 )]
 position = Vector2( 142.5, -16.667 )
-rotation = -0.179088
+rotation = 0.341212
 SwingDuration = 2.0
 SwimAngle = 20.0
 
@@ -89,6 +92,9 @@ shadow_item_cull_mask = 4
 [node name="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="2"]
 light_mask = 4
 light_mask = 4
+
+[node name="AngleTween" parent="ParallaxBackground/far/Node2D/TreeLight/Lanterne" index="3"]
+playback/active = false
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ParallaxBackground/far/Node2D/TreeLight"]
 light_mask = 4
@@ -163,10 +169,13 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/Decors/Tree" instance=ExtResource( 5 )]
 position = Vector2( -153, -18 )
-rotation = -0.179028
+rotation = -0.660122
 
 [node name="Lanterne" parent="Game/Decors/Tree/Lanterne" index="0"]
 energy = 0.6
+
+[node name="AngleTween" parent="Game/Decors/Tree/Lanterne" index="3"]
+playback/active = false
 
 [node name="Car" parent="Game/Decors" instance=ExtResource( 4 )]
 modulate = Color( 0, 0, 0, 1 )
@@ -185,6 +194,9 @@ polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 5
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="LightOccluder2D" parent="Game/Ground/MainGround" index="0"]
+occluder = SubResource( 7 )
 
 [node name="CollisionPolygon2D" parent="Game/Ground/MainGround/StaticBody2D" index="0"]
 polygon = PoolVector2Array( -24, -18, 14, -36, 85, -14, 189, 56, 351, 51, 545, 53, 734, -23, 1119, -32, 1365, 95, 1573, 55, 1756, -49, 2295, -19, 2290, 0, 2603, -1, 2512, 117, 1615, 199, 1150, 396, -127, 329, -41, 44 )

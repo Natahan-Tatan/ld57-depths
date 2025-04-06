@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class LetterArea : Area2D
 {
-    public Dictionary<string, bool> HaveBeenOpened = new Dictionary<string, bool>();
+    public static Dictionary<string, bool> HaveBeenOpened = new Dictionary<string, bool>();
 
     [Signal]
     public delegate void LetterDiscovered(string identifier, bool isClue);
@@ -25,6 +25,8 @@ public class LetterArea : Area2D
     }
     public string _content = "";
 
+    public bool IsOpened => HaveBeenOpened[Identifier];
+
     private AnimatedSprite _animatedSprite;
     private Label _label;
     private Letter _letterUI;
@@ -32,6 +34,10 @@ public class LetterArea : Area2D
     private bool _playerIn = false;
     public override void _Ready()
     {
+        _animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+        _label = GetNode<Label>("LabelCanvasLayer/NodeLabel/Label");
+        _letterUI = GetNode<Letter>("Letter");
+
         if(!HaveBeenOpened.ContainsKey(Identifier))
         {
             HaveBeenOpened[Identifier] = false;
@@ -44,10 +50,6 @@ public class LetterArea : Area2D
         {
             _animatedSprite.Play("closed");
         }
-
-        _animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
-        _label = GetNode<Label>("LabelCanvasLayer/NodeLabel/Label");
-        _letterUI = GetNode<Letter>("Letter");
     }
 
     public override void _UnhandledInput(InputEvent @event)

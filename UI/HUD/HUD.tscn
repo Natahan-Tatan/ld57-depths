@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/Fonts/Noto Sans/Merge-regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Prefabs/Letter/opened_letter.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://UI/HUD/blood_stain.png" type="Texture" id=4]
 [ext_resource path="res://UI/HUD/CluesCounter.cs" type="Script" id=5]
 [ext_resource path="res://UI/HUD/SleepIndicator.cs" type="Script" id=6]
+[ext_resource path="res://UI/HUD/HUD.cs" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 50
@@ -49,13 +53,28 @@ corner_radius_bottom_left = 50
 [node name="HUD" type="CanvasLayer"]
 scale = Vector2( 0.8, 0.8 )
 transform = Transform2D( 0.8, 0, 0, 0.8, 0, 0 )
+script = ExtResource( 7 )
+
+[node name="Backdrop" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -30.0
+margin_top = -25.0
+margin_right = -30.0
+margin_bottom = -25.0
+rect_scale = Vector2( 1.28922, 1.31687 )
+custom_styles/panel = SubResource( 13 )
 
 [node name="InGameUI" type="Control" parent="."]
+light_mask = 0
 margin_right = 40.0
 margin_bottom = 40.0
 theme = SubResource( 8 )
 
 [node name="LettersCounter" type="PanelContainer" parent="InGameUI"]
+light_mask = 0
 margin_right = 14.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 345, 0 )
@@ -63,23 +82,27 @@ custom_styles/panel = SubResource( 9 )
 script = ExtResource( 3 )
 
 [node name="HBox" type="HBoxContainer" parent="InGameUI/LettersCounter"]
+light_mask = 0
 margin_left = 50.0
 margin_right = 295.0
 margin_bottom = 69.0
 custom_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="InGameUI/LettersCounter/HBox"]
+light_mask = 0
 margin_right = 64.0
 margin_bottom = 69.0
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="InGameUI/LettersCounter/HBox"]
+light_mask = 0
 margin_left = 84.0
 margin_right = 245.0
 margin_bottom = 69.0
 text = "10 / 10"
 
 [node name="SleepIndicator" type="PanelContainer" parent="InGameUI"]
+light_mask = 0
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 568.75
@@ -90,6 +113,7 @@ custom_styles/panel = SubResource( 11 )
 script = ExtResource( 6 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InGameUI/SleepIndicator"]
+light_mask = 0
 margin_left = 50.0
 margin_right = 350.0
 margin_bottom = 97.0
@@ -99,6 +123,7 @@ bbcode_enabled = true
 fit_content_height = true
 
 [node name="CluesCounter" type="PanelContainer" parent="InGameUI"]
+light_mask = 0
 margin_left = 1250.0
 margin_right = 1601.0
 margin_bottom = 69.0
@@ -107,6 +132,7 @@ custom_styles/panel = SubResource( 10 )
 script = ExtResource( 5 )
 
 [node name="HBox" type="HBoxContainer" parent="InGameUI/CluesCounter"]
+light_mask = 0
 margin_left = 50.0
 margin_right = 301.0
 margin_bottom = 69.0
@@ -114,6 +140,7 @@ custom_constants/separation = 20
 alignment = 2
 
 [node name="Label" type="Label" parent="InGameUI/CluesCounter/HBox"]
+light_mask = 0
 margin_right = 161.0
 margin_bottom = 69.0
 grow_horizontal = 0
@@ -121,9 +148,12 @@ grow_vertical = 0
 text = "10 / 10"
 
 [node name="TextureRect" type="TextureRect" parent="InGameUI/CluesCounter/HBox"]
+light_mask = 0
 margin_left = 181.0
 margin_right = 251.0
 margin_bottom = 69.0
 rect_min_size = Vector2( 70, 69 )
 texture = ExtResource( 4 )
 expand = true
+
+[connection signal="PrisonnerWakeUp" from="InGameUI/SleepIndicator" to="." method="_on_SleepIndicator_PrisonnerWakeUp"]
