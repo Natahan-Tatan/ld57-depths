@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Decors/LightBeams/beam2.png" type="Texture" id=1]
+
+[node name="DoubleStreetLight" type="Polygon2D"]
+position = Vector2( 694, -61 )
+scale = Vector2( 1.5, 1.5 )
+color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+offset = Vector2( -450, 40 )
+polygon = PoolVector2Array( -11, 1, -13, -78, -13, -102, -32, -110, -44, -101, -33, -95, -59, -95, -47, -101, -42, -109, -31, -115, -10, -105, 13, -121, 27, -116, 29, -112, 40, -105, 16, -105, 26, -110, 12, -116, -8, -100, -5, 2 )
+
+[node name="LeftLight" type="Light2D" parent="."]
+position = Vector2( -496, -52.6667 )
+texture = ExtResource( 1 )
+offset = Vector2( 1, 70 )
+texture_scale = 0.6
+energy = 0.8
+range_layer_min = -10
+range_layer_max = 10
+range_item_cull_mask = 7
+shadow_enabled = true
+
+[node name="RightLight" type="Light2D" parent="."]
+position = Vector2( -421.333, -62.6667 )
+texture = ExtResource( 1 )
+offset = Vector2( 1, 70 )
+texture_scale = 0.6
+energy = 0.8
+range_layer_min = -10
+range_layer_max = 10
+range_item_cull_mask = 7
+shadow_enabled = true

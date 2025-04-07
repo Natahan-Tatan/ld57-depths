@@ -1,10 +1,20 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Decors/Tree.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/EndLevel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Decors/Car.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Decors/DoubleStreetLight.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/Characters/Shadows/Shadow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Decors/LightBeams/beam_circle.png" type="Texture" id=9]
+[ext_resource path="res://Decors/StreetLight.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/AlarmLight/AlarmLight.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Decors/Building.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Decors/Lanterne.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Decors/Torch.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Prefabs/Letter/Letter.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 1, 0.652222, 0.398438, 1 )
@@ -19,6 +29,373 @@ colors = PoolColorArray( 1, 1, 1, 1 )
 [sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
+[sub_resource type="Animation" id=17]
+resource_name = "Flashing"
+length = 1.8
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 0.7, 0.9, 1.3, 1.35, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Light"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Light"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Light"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Appearance/AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 16.9 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Swing"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 16.9, 31.7657, 16.9 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Flashing"
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.45, 0.5, 0.6, 0.85, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Cycle"
+length = 3.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.15, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.95, 1, 1.05, 2.9, 2.95, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Cycle"
+length = 4.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("LeftAlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.15, 2.8, 2.85, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftLight:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.05, 1.1, 2, 2.05, 2.1, 2.95, 3.6, 3.65, 3.7, 3.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false, true, false, true, false, true, false, true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightAlarmLight:Monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.15, 1.95, 2.15, 2.8, 2.85, 2.9, 2.95, 3.6, 3.65, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true, false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RightLight:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 1.05, 1.1, 2, 2.05, 2.1, 3.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("LeftAlarmLight:Monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftLight:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RightAlarmLight:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RightLight:enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("RightAlarmLight:Monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [node name="TestLevel" type="Node"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -31,18 +408,32 @@ color = Color( 0.25098, 0.25098, 0.25098, 1 )
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 7
 motion_mirroring = Vector2( 1280, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Sky"]
 light_mask = 7
-position = Vector2( 9, 1416 )
+position = Vector2( 9.00782, 3575.58 )
 rotation = -1.5708
-scale = Vector2( 1, 1280 )
+scale = Vector2( 2.62966, 1280 )
 texture = SubResource( 2 )
 centered = false
+
+[node name="DebugLight" type="Sprite" parent="ParallaxBackground/Sky"]
+visible = false
+position = Vector2( 4984, 25 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 9 )
 
 [node name="far" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 3
 motion_scale = Vector2( 0.2, 0.12 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/far"]
 light_mask = 7
@@ -54,22 +445,62 @@ position = Vector2( 210.333, -296.333 )
 
 [node name="Tree2" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 4 )]
 light_mask = 7
-position = Vector2( 683.333, -295 )
+position = Vector2( -1350.5, -271 )
 
 [node name="Tree4" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 4 )]
 light_mask = 7
-position = Vector2( 1435, -295 )
+position = Vector2( -598.833, -271 )
 
 [node name="Ground" type="Sprite" parent="ParallaxBackground/far/Node2D"]
 light_mask = 7
-position = Vector2( 624.5, 706.458 )
-scale = Vector2( 2.0389, 1717.08 )
+position = Vector2( 10099.6, 706.458 )
+scale = Vector2( 11.2919, 1717.08 )
 texture = SubResource( 4 )
+
+[node name="Building" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 12 )]
+light_mask = 7
+position = Vector2( 980, -135 )
+color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Windows" parent="ParallaxBackground/far/Node2D/Building" index="0"]
+light_mask = 7
+color = Color( 1, 1, 1, 1 )
+
+[node name="Building2" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 12 )]
+light_mask = 7
+position = Vector2( 2945, -120 )
+color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Windows" parent="ParallaxBackground/far/Node2D/Building2" index="0"]
+light_mask = 7
+color = Color( 1, 1, 1, 1 )
+
+[node name="Building3" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 12 )]
+light_mask = 7
+position = Vector2( 4600, -7.49976 )
+rotation = -0.350024
+color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Windows" parent="ParallaxBackground/far/Node2D/Building3" index="0"]
+light_mask = 7
+color = Color( 1, 1, 1, 1 )
 
 [node name="near" type="ParallaxLayer" parent="ParallaxBackground"]
 modulate = Color( 0.541176, 0.541176, 0.541176, 1 )
 light_mask = 3
 motion_scale = Vector2( 0.5, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/near"]
 scale = Vector2( 0.8, 0.8 )
@@ -84,13 +515,73 @@ position = Vector2( 691.111, -193.333 )
 
 [node name="Tree3" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 4 )]
 light_mask = 3
-position = Vector2( 1281.11, -193.333 )
+position = Vector2( -370, -188.75 )
 
 [node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
-light_mask = 3
-position = Vector2( 790.889, 489.681 )
-scale = Vector2( 1.8878, 1082.86 )
+position = Vector2( 2713.89, 489.681 )
+scale = Vector2( 3.76573, 1082.86 )
 texture = SubResource( 4 )
+
+[node name="Building" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 12 )]
+light_mask = 7
+position = Vector2( 3915, -43.75 )
+color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Windows" parent="ParallaxBackground/near/Node2D/Building" index="0"]
+light_mask = 7
+color = Color( 1, 1, 1, 1 )
+
+[node name="Building2" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 12 )]
+light_mask = 7
+position = Vector2( 2933.75, -6.25 )
+color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Windows" parent="ParallaxBackground/near/Node2D/Building2" index="0"]
+light_mask = 7
+color = Color( 1, 1, 1, 1 )
+
+[node name="Building3" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 12 )]
+light_mask = 7
+position = Vector2( 1517.5, -6.25 )
+color = Color( 1, 1, 1, 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Windows" parent="ParallaxBackground/near/Node2D/Building3" index="0"]
+light_mask = 7
+color = Color( 1, 1, 1, 1 )
+
+[node name="DoubleStreetLight" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 7 )]
+light_mask = 6
+position = Vector2( 2903.75, -141.25 )
+rotation = -0.061803
+color = Color( 1, 1, 1, 1 )
+
+[node name="LeftLight" parent="ParallaxBackground/near/Node2D/DoubleStreetLight" index="0"]
+energy = 0.4
+range_item_cull_mask = 2
+shadow_enabled = false
+
+[node name="RightLight" parent="ParallaxBackground/near/Node2D/DoubleStreetLight" index="1"]
+energy = 0.4
+range_item_cull_mask = 2
+shadow_enabled = false
+
+[node name="StreetLight" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 10 )]
+position = Vector2( 3506.25, -57.25 )
+color = Color( 1, 1, 1, 1 )
+
+[node name="Light2D" parent="ParallaxBackground/near/Node2D/StreetLight" index="0"]
+energy = 0.4
+range_item_cull_mask = 6
+shadow_enabled = false
 
 [node name="Game" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -98,24 +589,404 @@ follow_viewport_enable = true
 [node name="CanvasModulate" type="CanvasModulate" parent="Game"]
 color = Color( 0.298039, 0.298039, 0.298039, 1 )
 
-[node name="Decors" type="Node2D" parent="Game"]
-
 [node name="Grounds" type="Node2D" parent="Game"]
 
-[node name="Ground" parent="Game/Grounds" instance=ExtResource( 2 )]
+[node name="Ground_1" parent="Game/Grounds" instance=ExtResource( 2 )]
 position = Vector2( 20, -6 )
-polygon = PoolVector2Array( -207, -53, 14, -36, 127, -52, 125, 21, 81, 50, 24, 52, -235, 83 )
+polygon = PoolVector2Array( -440, -322, -334, 18, 14, -36, 774, -62, 1149, -94, 1220, 154, 1302, 1328, -177, 1435, -1744, 801, -1274, -496 )
 
-[node name="Letters" type="Node2D" parent="Game"]
+[node name="Tree" parent="Game/Grounds/Ground_1" instance=ExtResource( 4 )]
+position = Vector2( 152, -179 )
+color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+
+[node name="Tree2" parent="Game/Grounds/Ground_1" instance=ExtResource( 4 )]
+position = Vector2( -188, -145 )
+color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+
+[node name="DoubleStreetLight" parent="Game/Grounds/Ground_1" instance=ExtResource( 7 )]
+position = Vector2( 1309, -153 )
+
+[node name="Car" parent="Game/Grounds/Ground_1" instance=ExtResource( 6 )]
+modulate = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+position = Vector2( 789, -76 )
+rotation = -0.0508429
+
+[node name="Platforme_1" type="Node2D" parent="Game/Grounds"]
+
+[node name="pt_1" parent="Game/Grounds/Platforme_1" instance=ExtResource( 2 )]
+position = Vector2( 1324, -103 )
+polygon = PoolVector2Array( -80, 7, 12, -6, 146, -31, 125, 21, 81, 50, 24, 52, -41, 44 )
+
+[node name="StreetLight" parent="Game/Grounds/Platforme_1/pt_1" instance=ExtResource( 10 )]
+position = Vector2( 45, -11 )
+rotation = -0.708556
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Platforme_1/pt_1/StreetLight"]
+autoplay = "Flashing"
+anims/Flashing = SubResource( 17 )
+anims/RESET = SubResource( 18 )
+
+[node name="LurkingLetter" parent="Game/Grounds/Platforme_1/pt_1" instance=ExtResource( 15 )]
+position = Vector2( -18, -94 )
+Identifier = "LurkingLetter"
+Content = "[right]October 10th 1995[/right]
+
+Just when I thought the city wouldn't change a thing, it turned out to be just the opposite: I couldn't stop exploring every nook and cranny.
+
+I got to know all the shady people in my city, I loved hanging out in the halls of buildings, snooping in basements and parking lots... I loved lurking in the shadows and watching people..."
+
+[node name="pt_2" parent="Game/Grounds/Platforme_1" instance=ExtResource( 2 )]
+position = Vector2( 1648, -75 )
+polygon = PoolVector2Array( -85, -32, 33, -19, 146, -31, 125, 21, 81, 50, 24, 52, -41, 44 )
+
+[node name="Shadow" parent="Game/Grounds/Platforme_1/pt_2" instance=ExtResource( 8 )]
+position = Vector2( 11, -64 )
+WaitingDuration = 2.0
+GoLeft = true
+
+[node name="AlarmLight" parent="Game/Grounds/Platforme_1/pt_2/Shadow/Appearance" index="1"]
+visible = false
+Monitoring = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Platforme_1/pt_2/Shadow"]
+autoplay = "Light"
+anims/Light = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="DoubleStreetLight" parent="Game/Grounds/Platforme_1/pt_2" instance=ExtResource( 7 )]
+position = Vector2( 717, -76 )
+polygon = PoolVector2Array( -11, 1, -13, -78, -13, -102, -32, -110, -44, -101, -33, -95, -59, -95, -47, -101, -42, -109, -31, -115, -10, -105, 13, -121, 27, -116, 29, -112, 40, -105, 16, -105, 26, -110, 12, -116, -8, -100, -7.1633, -71.5514, -5, 2 )
+
+[node name="pt_3" parent="Game/Grounds/Platforme_1" instance=ExtResource( 2 )]
+position = Vector2( 1934, -40 )
+polygon = PoolVector2Array( -80, 7, -70, -66, 146, -31, 125, 21, 81, 50, 24, 52, -41, 44 )
+
+[node name="pt_4" parent="Game/Grounds/Platforme_1" instance=ExtResource( 2 )]
+position = Vector2( 2318, -83 )
+rotation = -0.194578
+polygon = PoolVector2Array( -148, -19, 22, 13, 153, -24, 201, -31, 274, 59, 81, 50, 24, 52, -41, 44, -142, 81 )
+
+[node name="Shadow" parent="Game/Grounds/Platforme_1/pt_4" instance=ExtResource( 8 )]
+position = Vector2( 53, -28 )
+WaitingDuration = 2.0
+GoLeft = true
+
+[node name="Appearance" parent="Game/Grounds/Platforme_1/pt_4/Shadow" index="0"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AlarmLight" parent="Game/Grounds/Platforme_1/pt_4/Shadow/Appearance" index="1"]
+visible = false
+Monitoring = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Platforme_1/pt_4/Shadow"]
+autoplay = "Light"
+anims/Light = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[node name="DoubleStreetLight" parent="Game/Grounds/Platforme_1/pt_4" instance=ExtResource( 7 )]
+position = Vector2( 710, -48 )
+polygon = PoolVector2Array( -11, 1, -13, -78, -13, -102, -32, -110, -44, -101, -33, -95, -59, -95, -47, -101, -42, -109, -31, -115, -10, -105, 13, -121, 27, -116, 29, -112, 40, -105, 16, -105, 26, -110, 12, -116, -8, -100, -6.04282, -33.455, -5, 2 )
+
+[node name="pt_5" parent="Game/Grounds/Platforme_1" instance=ExtResource( 2 )]
+position = Vector2( 2700, -179 )
+rotation = -0.122245
+polygon = PoolVector2Array( -85, -32, 36, -49, 249.827, -48.9008, 167.58, 62.9042, 81, 50, 24, 52, -41, 44 )
+
+[node name="Shadow" parent="Game/Grounds/Platforme_1/pt_5" instance=ExtResource( 8 )]
+position = Vector2( -5, -72 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ]
+}
+WaitingDuration = 2.0
+GoLeft = true
+
+[node name="AlarmLight" parent="Game/Grounds/Platforme_1/pt_5/Shadow/Appearance" index="1"]
+visible = false
+Monitoring = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Platforme_1/pt_5/Shadow"]
+autoplay = "Light"
+anims/Light = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="Ground_2" parent="Game/Grounds" instance=ExtResource( 2 )]
+position = Vector2( 3059, -272 )
+polygon = PoolVector2Array( -24, -18, 14, -36, 127, -52, 522, -36, 779, 234, 561, 579, 494, 734, 385, 867, 283, 1807, -311, 1862, -640, 1401 )
+
+[node name="DoubleStreetLight" parent="Game/Grounds/Ground_2" instance=ExtResource( 7 )]
+position = Vector2( 1059, -91 )
+
+[node name="Car" parent="Game/Grounds/Ground_2" instance=ExtResource( 6 )]
+modulate = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+position = Vector2( 522, -36 )
+rotation = 0.294961
+
+[node name="Light2D" parent="Game/Grounds/Ground_2/Car" index="2"]
+position = Vector2( -96.9046, 11.566 )
+scale = Vector2( 1.84659, 2.02538 )
+offset = Vector2( -95, 30 )
+energy = 0.6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Ground_2/Car"]
+autoplay = "Swing"
+anims/RESET = SubResource( 12 )
+anims/Swing = SubResource( 11 )
+
+[node name="Ground_3" parent="Game/Grounds" instance=ExtResource( 2 )]
+position = Vector2( 4117, 129 )
+polygon = PoolVector2Array( -260, 85, 123, 19, 983, -48, 1081, 507, 874, 1343, 524, 1361, -217, 1404, -355, 728, -264, 257 )
+
+[node name="Car" parent="Game/Grounds/Ground_3" instance=ExtResource( 6 )]
+modulate = Color( 0.105882, 0.105882, 0.105882, 1 )
+position = Vector2( -150, 15 )
+rotation = 3.30907
+
+[node name="Light2D" parent="Game/Grounds/Ground_3/Car" index="2"]
+visible = false
+position = Vector2( -98.978, -9.89307 )
+rotation = 0.571271
+
+[node name="Ground" parent="Game/Grounds/Ground_3/Car" instance=ExtResource( 2 )]
+position = Vector2( -16.1663, -23.6358 )
+polygon = PoolVector2Array( -66.9106, 0.155975, 8.20703, -5.44434, 66.2432, -4.09995, 61.2141, -45.8456, 75.99, -54.4289, 101.92, -3.03226, 125.918, -5.061, 126.308, 21.242, -89.532, 28.321, -89.908, 8.10074 )
+
+[node name="StreetLight" parent="Game/Grounds/Ground_3" instance=ExtResource( 10 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Ground_3/StreetLight"]
+autoplay = "Flashing"
+playback_speed = 0.8
+anims/Flashing = SubResource( 15 )
+anims/RESET = SubResource( 16 )
+
+[node name="AlarmStreetLight2" parent="Game/Grounds/Ground_3" instance=ExtResource( 10 )]
+position = Vector2( 410, -11 )
+
+[node name="AlarmLight" parent="Game/Grounds/Ground_3/AlarmStreetLight2" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( -48, -125 )
+Monitoring = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Ground_3/AlarmStreetLight2"]
+autoplay = "Cycle"
+playback_speed = 0.8
+anims/Cycle = SubResource( 13 )
+anims/RESET = SubResource( 14 )
+
+[node name="Car2" parent="Game/Grounds/Ground_3" instance=ExtResource( 6 )]
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+position = Vector2( 727, -40 )
+rotation = -0.136345
+scale = Vector2( -1, 1 )
+
+[node name="CarLetter" parent="Game/Grounds/Ground_3" instance=ExtResource( 15 )]
+position = Vector2( -42, 29 )
+Identifier = "CarLetter"
+IsClue = true
+Content = "[right]September 4th 2025[/right]
+
+As I drove around my neighborhood with my current date, I decided to show her the view I used to contemplate from the top of a hill. From up there, we could see a good part of the city, even if some of the buildings towered over us. I used to love sitting up there as a teenager to get away from my father.
+
+But as we reached the top, she began to make fun of the place, finding it ridiculous, and I again felt an impulse devouring me from within.... I was angry!
+
+[color=#ac3232]I grabbed her head and slammed it against the dashboard.[/color] As she was stunned, I unbuckled my seatbelt, accelerated towards the wooden barrier at the end of the small parking lot, put the car in neutral, opened the door and threw myself out of the car.
+
+All I heard was a screech as the car broke the barrier and fell several dozen meters... I heard a clang of sheet metal, then an explosion... I felt soothed..."
+
+[node name="Ground_building" parent="Game/Grounds" instance=ExtResource( 2 )]
+position = Vector2( 5476, 65 )
+polygon = PoolVector2Array( -24, -18, 14, -36, 127, -52, 1895, -86, 1845, 745, 1006, 1309, -368, 1381, -188, 698, -281, 21 )
+
+[node name="Building" parent="Game/Grounds/Ground_building" instance=ExtResource( 12 )]
+position = Vector2( 446, -53 )
+z_index = 2
+polygon = PoolVector2Array( -229, -144, -237, -756, 401, -760, 413, -151, 411, -1, 363, 1, 340, -164, 338, -721, -166, -723, -166, -153, 361, -151, 363, 1, 151, 6, 148, -148, 6, -134 )
+
+[node name="Windows" parent="Game/Grounds/Ground_building/Building" index="0"]
+z_index = 2
+z_as_relative = false
+polygon = PoolVector2Array( 35, -781, 36, -631, -197, -625, -197, -537, 38, -548, 38, -390, -199, -388, -194, -318, 41, -329, 41, -235, -191, -235, -160, -189, 152, -195, 388, -139, 388, -214, 165, -227, 161, -338, 379, -356, 381, -424, 139, -418, 140, -558, 383, -561, 383, -668, 143, -647, 147, -788 )
+
+[node name="stair_1" parent="Game/Grounds/Ground_building/Building" instance=ExtResource( 2 )]
+modulate = Color( 0, 0, 0, 0.329412 )
+position = Vector2( 182, -50 )
+polygon = PoolVector2Array( 26, 1, 119, -65, 182, -78, 227, -81, 222, -1, 222, 59, 75, 65, -13, 72, -41, 55 )
+
+[node name="indoor" parent="Game/Grounds/Ground_building/Building" instance=ExtResource( 2 )]
+modulate = Color( 0.964706, 0, 0, 0 )
+position = Vector2( -180, -177 )
+polygon = PoolVector2Array( -60, -577, -36, -577, 282, -577, 581, -577, 587, -164, 324, -137, 326, 8, 323, 38, 187, 42, 81, 50, 24, 52, -58, 37 )
+
+[node name="wall" type="Polygon2D" parent="Game/Grounds/Ground_building/Building"]
+position = Vector2( -5, 13.827 )
+scale = Vector2( 1, 1.08649 )
+z_index = -2
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -223, -183, -223, 2, 21, -1, 19, -91, 16, -177 )
+
+[node name="Stairs" parent="Game/Grounds/Ground_building/Building" instance=ExtResource( 2 )]
+position = Vector2( 430, -101 )
+polygon = PoolVector2Array( -25, -31, 109, -33, 109, -6, 56, -4, -24, -5 )
+
+[node name="Fence" type="Polygon2D" parent="Game/Grounds/Ground_building/Building/Stairs"]
+position = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
+
+[node name="ladder" type="Polygon2D" parent="Game/Grounds/Ground_building/Building/Stairs"]
+position = Vector2( 2, -115 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36, -160, 18, -159, 18, -150, 36, -150, 36, -147, 18, -146, 18.0691, -138.811, 37, -139, 37, -135, 18.1201, -133.512, 18.1838, -126.888, 38, -127, 38, -123, 18.2474, -120.273, 18.3009, -114.708, 38, -115, 38, -111, 18.3518, -109.412, 18.4053, -103.851, 38, -104, 38, -99, 18, -98, 18.0896, -92.983, 39, -93, 38, -89, 18, -88, 18.1048, -83.1784, 38, -83, 38, -79, 18.2198, -77.8893, 18.3002, -74.1888, 39, -74, 38, -69, 18.4155, -68.8882, 18.5365, -63.3229, 39, -63, 39, -60, 18.6459, -58.2871, 18.7381, -54.0455, 39, -54, 39, -50, 18.8532, -48.7507, 19, -42, 38, -43, 36, -144, 35, -163, 35, -173, 40, -173, 44, -26, 38, -26, 38, -37, 19, -36, 19, -27 )
+
+[node name="Stairs2" parent="Game/Grounds/Ground_building/Building" instance=ExtResource( 2 )]
+position = Vector2( 428, -332 )
+polygon = PoolVector2Array( -25, -31, 109, -33, 109, -6, 56, -4, -24, -5 )
+
+[node name="Fence" type="Polygon2D" parent="Game/Grounds/Ground_building/Building/Stairs2"]
+position = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
+
+[node name="ladder" type="Polygon2D" parent="Game/Grounds/Ground_building/Building/Stairs2"]
+position = Vector2( 0, -120 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36, -160, 18, -159, 18, -150, 36, -150, 36, -147, 18, -146, 18.0691, -138.811, 37, -139, 37, -135, 18.1201, -133.512, 18.1838, -126.888, 38, -127, 38, -123, 18.2474, -120.273, 18.3009, -114.708, 38, -115, 38, -111, 18.3518, -109.412, 18.4053, -103.851, 38, -104, 38, -99, 18, -98, 18.0896, -92.983, 39, -93, 38, -89, 18, -88, 18.1048, -83.1784, 38, -83, 38, -79, 18.2198, -77.8893, 18.3002, -74.1888, 39, -74, 38, -69, 18.4155, -68.8882, 18.5365, -63.3229, 39, -63, 39, -60, 18.6459, -58.2871, 18.7381, -54.0455, 39, -54, 39, -50, 18.8532, -48.7507, 19, -42, 38, -43, 36.9288, -97.0947, 36, -144, 35, -163, 35, -173, 40, -173, 44, -26, 38, -26, 38, -37, 19, -36, 19, -27 )
+
+[node name="Stairs3" parent="Game/Grounds/Ground_building/Building" instance=ExtResource( 2 )]
+position = Vector2( 422, -571 )
+polygon = PoolVector2Array( -25, -31, 109, -33, 109, -6, 56, -4, -24, -5 )
+
+[node name="Fence" type="Polygon2D" parent="Game/Grounds/Ground_building/Building/Stairs3"]
+position = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
+
+[node name="Building2" parent="Game/Grounds/Ground_building" instance=ExtResource( 12 )]
+position = Vector2( 1403, -64 )
+z_index = 2
+
+[node name="Stairs" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 2 )]
+position = Vector2( -246, -233 )
+scale = Vector2( -1, 1 )
+polygon = PoolVector2Array( -25, -31, 109, -33, 109, -6, 56, -4, -24, -5 )
+
+[node name="Fence" type="Polygon2D" parent="Game/Grounds/Ground_building/Building2/Stairs"]
+position = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
+
+[node name="ladder" type="Polygon2D" parent="Game/Grounds/Ground_building/Building2/Stairs"]
+position = Vector2( 10, -125 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36, -160, 18, -159, 18, -150, 36, -150, 36, -147, 18, -146, 18.0691, -138.811, 37, -139, 37, -135, 18.1201, -133.512, 18.1838, -126.888, 38, -127, 38, -123, 18.2474, -120.273, 18.3009, -114.708, 38, -115, 38, -111, 18.3518, -109.412, 18.4053, -103.851, 38, -104, 38, -99, 18, -98, 18.0896, -92.983, 39, -93, 38, -89, 18, -88, 18.1048, -83.1784, 38, -83, 38, -79, 18.2198, -77.8893, 18.3002, -74.1888, 39, -74, 38, -69, 18.4155, -68.8882, 18.5365, -63.3229, 39, -63, 39, -60, 18.6459, -58.2871, 18.7381, -54.0455, 39, -54, 39, -50, 18.8532, -48.7507, 19, -42, 38, -43, 36, -144, 35, -163, 35, -173, 40, -173, 44, -26, 38, -26, 38, -37, 19, -36, 19, -27 )
+
+[node name="ladder2" type="Polygon2D" parent="Game/Grounds/Ground_building/Building2/Stairs"]
+position = Vector2( 14, 120 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36, -160, 18, -159, 18, -150, 36, -150, 36, -147, 18, -146, 18.0691, -138.811, 37, -139, 37, -135, 18.1201, -133.512, 18.1838, -126.888, 38, -127, 38, -123, 18.2474, -120.273, 18.3009, -114.708, 38, -115, 38, -111, 18.3518, -109.412, 18.4053, -103.851, 38, -104, 38, -99, 18, -98, 18.0896, -92.983, 39, -93, 38, -89, 18, -88, 18.1048, -83.1784, 38, -83, 38, -79, 18.2198, -77.8893, 18.3002, -74.1888, 39, -74, 38, -69, 18.4155, -68.8882, 18.5365, -63.3229, 39, -63, 39, -60, 18.6459, -58.2871, 18.7381, -54.0455, 39, -54, 39, -50, 18.8532, -48.7507, 19, -42, 38, -43, 36, -144, 35, -163, 35, -173, 40, -173, 44, -26, 38, -26, 38, -37, 19, -36, 19, -27 )
+
+[node name="Stairs2" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 2 )]
+position = Vector2( -246, -480 )
+scale = Vector2( -1, 1 )
+polygon = PoolVector2Array( -25, -31, 109, -33, 109, -6, 56, -4, -24, -5 )
+
+[node name="Fence" type="Polygon2D" parent="Game/Grounds/Ground_building/Building2/Stairs2"]
+position = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
+
+[node name="ladder" type="Polygon2D" parent="Game/Grounds/Ground_building/Building2/Stairs2"]
+position = Vector2( 8, -105 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36, -160, 18, -159, 18, -150, 36, -150, 36, -147, 18, -146, 18.0691, -138.811, 37, -139, 37, -135, 18.1201, -133.512, 18.1838, -126.888, 38, -127, 38, -123, 18.2474, -120.273, 18.3009, -114.708, 38, -115, 38, -111, 18.3518, -109.412, 18.4053, -103.851, 38, -104, 38, -99, 18, -98, 18.0896, -92.983, 39, -93, 38, -89, 18, -88, 18.1048, -83.1784, 38, -83, 38, -79, 18.2198, -77.8893, 18.3002, -74.1888, 39, -74, 38, -69, 18.4155, -68.8882, 18.5365, -63.3229, 39, -63, 39, -60, 18.6459, -58.2871, 18.7381, -54.0455, 39, -54, 39, -50, 18.8532, -48.7507, 19, -42, 38, -43, 36, -144, 35, -163, 35, -173, 40, -173, 44, -26, 38, -26, 38, -37, 19, -36, 19, -27 )
+
+[node name="Lanterne" parent="Game/Grounds/Ground_building/Building2/Stairs2" instance=ExtResource( 13 )]
+position = Vector2( 109, -12 )
+rotation = 0.595909
+
+[node name="Stairs3" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 2 )]
+position = Vector2( -254, -720 )
+scale = Vector2( -1, 1 )
+polygon = PoolVector2Array( -25, -31, 109, -33, 109, -6, 56, -4, -24, -5 )
+
+[node name="Fence" type="Polygon2D" parent="Game/Grounds/Ground_building/Building2/Stairs3"]
+position = Vector2( 5, 0 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
+
+[node name="Ground" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 2 )]
+position = Vector2( -304, -664 )
+polygon = PoolVector2Array( 135, -44, 138, 46, 336, 46, 649, 75, 678, 77, 699, 75, 699, 137, 718, 707, 647, 687, 644, 142, 132.687, 162.148, 129, 658, 69, 664, 72, -93, 137.234, -91.2578 )
+
+[node name="ApartmentLetter" parent="Game/Grounds/Ground_building/Building2/Ground" instance=ExtResource( 15 )]
+position = Vector2( 157, 23 )
+Identifier = "ApartmentLetter"
+Content = "[right]April 15th 1997[/right]
+
+Our apartment, on the top floor. Despite all the bad memories I've had there, I love this view.... The sunsets were magnificent....
+
+I remember lying in bed, locked in by my father... just gazing out the window at the sun, through the tears that were beading in my eyes. Nothing existed around me at that moment."
+
+[node name="Torch" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 14 )]
+position = Vector2( -95, -625 )
+rotation = 1.89339
+
+[node name="AlarmDoubleStreetLight" parent="Game/Grounds/Ground_building" instance=ExtResource( 7 )]
+position = Vector2( 666, -125 )
+polygon = PoolVector2Array( -11.3333, 42.6667, -13, -78, -13, -102, -32, -110, -44, -101, -33, -95, -59, -95, -47, -101, -42, -109, -31, -115, -10, -105, 13, -121, 27, -116, 29, -112, 40, -105, 16, -105, 26, -110, 12, -116, -8, -100, -3.33325, 37.3333 )
+
+[node name="LeftAlarmLight" parent="Game/Grounds/Ground_building/AlarmDoubleStreetLight" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( -494.667, -56 )
+scale = Vector2( 0.877778, 1 )
+Monitoring = false
+
+[node name="RightAlarmLight" parent="Game/Grounds/Ground_building/AlarmDoubleStreetLight" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( -420, -66 )
+scale = Vector2( 0.877778, 1 )
+Monitoring = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Ground_building/AlarmDoubleStreetLight"]
+autoplay = "Cycle"
+playback_speed = 0.6
+anims/Cycle = SubResource( 19 )
+anims/RESET = SubResource( 20 )
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( -125, -87 )
+position = Vector2( 86, -94 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="Camera2D" type="Camera2D" parent="Game/Player"]
 current = true
 smoothing_enabled = true
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="EndLevel" parent="." instance=ExtResource( 5 )]
-position = Vector2( 162, -94 )
+position = Vector2( 7128, -634 )
+
+[editable path="ParallaxBackground/far/Node2D/Building"]
+[editable path="ParallaxBackground/far/Node2D/Building2"]
+[editable path="ParallaxBackground/far/Node2D/Building3"]
+[editable path="ParallaxBackground/near/Node2D/Building"]
+[editable path="ParallaxBackground/near/Node2D/Building2"]
+[editable path="ParallaxBackground/near/Node2D/Building3"]
+[editable path="ParallaxBackground/near/Node2D/DoubleStreetLight"]
+[editable path="ParallaxBackground/near/Node2D/StreetLight"]
+[editable path="Game/Grounds/Platforme_1/pt_1/StreetLight"]
+[editable path="Game/Grounds/Platforme_1/pt_2/Shadow"]
+[editable path="Game/Grounds/Platforme_1/pt_4/Shadow"]
+[editable path="Game/Grounds/Platforme_1/pt_5/Shadow"]
+[editable path="Game/Grounds/Ground_2/Car"]
+[editable path="Game/Grounds/Ground_3/Car"]
+[editable path="Game/Grounds/Ground_3/StreetLight"]
+[editable path="Game/Grounds/Ground_3/AlarmStreetLight2"]
+[editable path="Game/Grounds/Ground_building/Building"]
+[editable path="Game/Grounds/Ground_building/AlarmDoubleStreetLight"]

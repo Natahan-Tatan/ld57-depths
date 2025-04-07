@@ -425,11 +425,11 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
 position = Vector2( -186, -29 )
-rotation = 0.257748
+rotation = 0.547899
 
 [node name="AlarmLantern" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
 position = Vector2( 138, -22 )
-rotation = 0.41894
+rotation = 1.30035
 __meta__ = {
 "_edit_group_": true
 }
@@ -438,6 +438,9 @@ SwimAngle = 85.0
 
 [node name="Lanterne" parent="Game/MainGround/CabaneZone/Tree/AlarmLantern" index="0"]
 visible = false
+
+[node name="AngleTween" parent="Game/MainGround/CabaneZone/Tree/AlarmLantern" index="3"]
+playback/active = false
 
 [node name="DeactivatableAlarmLight" parent="Game/MainGround/CabaneZone/Tree/AlarmLantern" instance=ExtResource( 12 )]
 position = Vector2( 4.99976, 13 )

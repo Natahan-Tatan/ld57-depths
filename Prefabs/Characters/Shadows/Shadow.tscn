@@ -17,12 +17,12 @@ scale = Vector2( 1.22667, 0.796 )
 [node name="FloorRayCastRight" type="RayCast2D" parent="." index="2"]
 position = Vector2( 14, 27 )
 enabled = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 15 )
 
 [node name="FloorRayCastLeft" type="RayCast2D" parent="." index="3"]
 position = Vector2( -14, 26 )
 enabled = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 15 )
 
 [node name="WaitingTimer" type="Timer" parent="." index="4"]
 one_shot = true
