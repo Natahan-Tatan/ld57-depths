@@ -11,7 +11,8 @@ config_version=4
 [application]
 
 config/name="LD57 Depths"
-run/main_scene="res://UI/Screens/Intro.tscn"
+run/main_scene="res://UI/Screens/Warning.tscn"
+boot_splash/image="res://logo_natahan_720px.png"
 config/icon="res://icon.png"
 
 [display]

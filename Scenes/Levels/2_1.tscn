@@ -425,11 +425,11 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
 position = Vector2( -186, -29 )
-rotation = 0.547899
+rotation = 0.670206
 
 [node name="AlarmLantern" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
 position = Vector2( 138, -22 )
-rotation = 1.30035
+rotation = -1.18311
 __meta__ = {
 "_edit_group_": true
 }

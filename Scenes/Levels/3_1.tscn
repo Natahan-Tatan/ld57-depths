@@ -904,7 +904,7 @@ polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36,
 
 [node name="Lanterne" parent="Game/Grounds/Ground_building/Building2/Stairs2" instance=ExtResource( 13 )]
 position = Vector2( 109, -12 )
-rotation = 0.595909
+rotation = -0.221559
 
 [node name="Stairs3" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 2 )]
 position = Vector2( -254, -720 )
@@ -956,7 +956,7 @@ anims/Cycle = SubResource( 19 )
 anims/RESET = SubResource( 20 )
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 86, -94 )
+position = Vector2( 68, -75 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [  ]

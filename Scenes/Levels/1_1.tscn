@@ -181,7 +181,7 @@ position = Vector2( 3682.5, -185 )
 
 [node name="Lanterne" parent="ParallaxBackground/near/Node2D/Tree7" instance=ExtResource( 12 )]
 position = Vector2( -536.25, -7.50002 )
-rotation = 0.115696
+rotation = 0.169069
 SwingDuration = 2.0
 SwimAngle = 10.0
 
@@ -386,7 +386,7 @@ playback/active = false
 
 [node name="Lanterne2" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
 position = Vector2( 580, 357 )
-rotation = 0.105723
+rotation = -0.0182942
 SwimAngle = 10.0
 
 [node name="AlarmLanternButton" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 14 )]
@@ -395,7 +395,7 @@ rotation = -0.371755
 
 [node name="AlarmLantern" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
 position = Vector2( 1292, 253 )
-rotation = 0.211446
+rotation = -0.0365884
 __meta__ = {
 "_edit_group_": true
 }
@@ -413,7 +413,7 @@ scale = Vector2( 2.055, 1.416 )
 ButtonPath = NodePath("../../AlarmLanternButton")
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( -69, -83 )
+position = Vector2( -68, -136 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [  ]

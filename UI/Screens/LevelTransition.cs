@@ -35,7 +35,7 @@ public class LevelTransition : PanelContainer
         if(CurrentDepth <= 1)
         {
             _alreadyVisited[1] = true;
-            if(SleepIndicator.LastRemaining < 3)
+            if(SleepIndicator.LastRemaining < 2)//TODO: le repasser à 3
             {
                 GetNode<Control>("VBoxContainer/Light").Visible = true;
                 GetNode<TextureRect>("VBoxContainer/HBoxContainer/ArrowStay").Visible = true;
@@ -50,14 +50,14 @@ public class LevelTransition : PanelContainer
         else if(CurrentDepth == 2)
         {
             _alreadyVisited[2] = true;
-            if(SleepIndicator.LastRemaining < 2)
+            if(SleepIndicator.LastRemaining < 0) //TODO: le repasser à 2
             {
                 GetNode<Control>("VBoxContainer/Light").Visible = true;
                 GetNode<TextureRect>("VBoxContainer/HBoxContainer/Arrow").FlipV = true;
                 GetNode<TextureRect>("VBoxContainer/HBoxContainer/Arrow").Visible = true;
                 CurrentDepth = 1;
             }
-            else if(SleepIndicator.LastRemaining == 2)
+            else if(SleepIndicator.LastRemaining == 1) //TODO: le repasser à 2
             {
                 GetNode<Control>("VBoxContainer/Deeper").Visible = true;
                 GetNode<TextureRect>("VBoxContainer/HBoxContainer/ArrowStay").Visible = true;
@@ -74,7 +74,7 @@ public class LevelTransition : PanelContainer
             _alreadyVisited[3] = true;
             if(CluesCounter.LettersOpened < CluesCounter.TOTAL_LETTERS)
             {
-                if(SleepIndicator.LastRemaining >= 2)
+                if(SleepIndicator.LastRemaining >= 0) //TODO: le repasser à 2
                 {
                     GetNode<Control>("VBoxContainer/Deepest").Visible = true;
                     GetNode<Control>("VBoxContainer/MissClues").Visible = true;

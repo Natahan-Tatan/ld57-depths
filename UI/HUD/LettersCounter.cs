@@ -4,7 +4,7 @@ using System.Linq;
 
 public class LettersCounter : PanelContainer
 {
-    private const int TOTAL_LETTERS = 10;
+    private const int TOTAL_LETTERS = 9;
     public static int LettersOpened {get; protected set;} = 0;
 
     private Label _label;
@@ -14,7 +14,7 @@ public class LettersCounter : PanelContainer
         {
             letter.Connect(nameof(LetterArea.LetterDiscovered), this, nameof(_on_Letters_LetterDiscovered));
         }
-        
+
         _label = GetNode<Label>("HBox/Label");
 
         _UpdateLabel();
