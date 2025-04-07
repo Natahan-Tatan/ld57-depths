@@ -4,7 +4,7 @@ using System.Linq;
 
 public class LettersCounter : PanelContainer
 {
-    private const int TOTAL_LETTERS = 9;
+    private const int TOTAL_LETTERS = 8;
     public static int LettersOpened {get; protected set;} = 0;
 
     private Label _label;

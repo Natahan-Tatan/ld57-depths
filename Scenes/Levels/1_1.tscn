@@ -181,7 +181,7 @@ position = Vector2( 3682.5, -185 )
 
 [node name="Lanterne" parent="ParallaxBackground/near/Node2D/Tree7" instance=ExtResource( 12 )]
 position = Vector2( -536.25, -7.50002 )
-rotation = 0.169069
+rotation = 0.0456209
 SwingDuration = 2.0
 SwimAngle = 10.0
 
@@ -218,7 +218,7 @@ color = Color( 0.345098, 0.345098, 0.345098, 1 )
 
 [node name="MainGround" parent="Game/Sections" instance=ExtResource( 2 )]
 position = Vector2( 20, -6 )
-polygon = PoolVector2Array( -207, -53, 14, -36, 1279, -82, 1234, -56, 1168, -47, 1136, -23, 1070, -2, 1009, 50, 885, 151, 870, 194, 900, 228, 1044, 149, 1057, 395, 1299, 357, 1422, 274, 2009, -41, 2760, -33, 3072, -36, 3068, -5, 3578, 19, 3779, -17, 3785, -71, 4141, 58, 4585, 238, 4944, 226, 5490, 190, 6041, 160, 6509, -169, 6901, -187, 6894, -329, 6686, -329, 6687, -644, 7304, -839, 7502, -557, 7526, 187, 7021, 581, 6683, 604, 4022, 825, 1510, 1033, -80, 714, -1211, 689, -1078, 261, -929, 286, -657, 271, -648, 279, -440, 277 )
+polygon = PoolVector2Array( -207, -53, 14, -36, 1279, -82, 1234, -56, 1168, -47, 1136, -23, 1204, 88, 2009, -41, 2760, -33, 3072, -36, 3068, -5, 3578, 19, 3779, -17, 3785, -71, 4141, 58, 4585, 238, 4944, 226, 5490, 190, 6041, 160, 6509, -169, 6901, -187, 6894, -329, 6686, -329, 6687, -644, 7304, -839, 7502, -557, 7526, 187, 7021, 581, 6683, 604, 4022, 825, 1510, 1033, -80, 714, -1211, 689, -1078, 261, -929, 286, -657, 271, -648, 279, -440, 277 )
 
 [node name="LeftStartLadder" type="Node2D" parent="Game/Sections/MainGround"]
 position = Vector2( -20, 6 )
@@ -279,6 +279,7 @@ position = Vector2( -1.56943, -7.69263 )
 scale = Vector2( 0.490198, 0.454953 )
 
 [node name="LevelBisLetter" parent="Game/Sections/MainGround/FirstRock" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( -261, 44 )
 Identifier = "LevelBis"
 Content = "[right]September 2nd 1992[/right]
@@ -386,7 +387,7 @@ playback/active = false
 
 [node name="Lanterne2" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
 position = Vector2( 580, 357 )
-rotation = -0.0182942
+rotation = -0.0285743
 SwimAngle = 10.0
 
 [node name="AlarmLanternButton" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 14 )]
@@ -395,7 +396,7 @@ rotation = -0.371755
 
 [node name="AlarmLantern" parent="Game/Sections/MainGround/ClimbingTree" instance=ExtResource( 12 )]
 position = Vector2( 1292, 253 )
-rotation = -0.0365884
+rotation = -0.0571487
 __meta__ = {
 "_edit_group_": true
 }

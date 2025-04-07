@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Ground/Ground.tscn" type="PackedScene" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Decors/Lanterne.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Decors/Torch.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Prefabs/Letter/Letter.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Prefabs/Characters/Prisonner/prisonner.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Levels/Prisonner.cs" type="Script" id=17]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0.0731506, 0.199219, 1, 1, 0.652222, 0.398438, 1 )
@@ -279,6 +281,82 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "Action"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Rot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 36.1328, 36.1328, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Rot/Torch/AlarmLight:Monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1.03526 ),
+"update": 1,
+"values": [ Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 219, -841 ), Vector2( 219, -841 ), Vector2( 600, -841 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 10.7, 11.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Rot:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 12, 12.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.18519, 12.2222 ), Vector2( 8, 6 ), Vector2( 12, 27 ) ]
+}
+
 [sub_resource type="Animation" id=19]
 resource_name = "Cycle"
 length = 4.5
@@ -422,8 +500,7 @@ texture = SubResource( 2 )
 centered = false
 
 [node name="DebugLight" type="Sprite" parent="ParallaxBackground/Sky"]
-visible = false
-position = Vector2( 4984, 25 )
+position = Vector2( 5763, -440 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 9 )
 
@@ -863,6 +940,40 @@ position = Vector2( 5, 0 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( 88, -31, 88, -82, 83, -82, 84, -89, 104, -88, 104, -82, 98, -82, 100, -62, 101, -30 )
 
+[node name="Prisonner" type="Sprite" parent="Game/Grounds/Ground_building"]
+position = Vector2( 219, -841 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 16 )
+script = ExtResource( 17 )
+
+[node name="Rot" type="Node2D" parent="Game/Grounds/Ground_building/Prisonner"]
+position = Vector2( 9.18519, 12.2222 )
+rotation = 0.630636
+scale = Vector2( 1, 1 )
+
+[node name="Torch" parent="Game/Grounds/Ground_building/Prisonner/Rot" instance=ExtResource( 14 )]
+position = Vector2( 34, -1 )
+rotation = -1.56531
+enabled = false
+
+[node name="AlarmLight" parent="Game/Grounds/Ground_building/Prisonner/Rot/Torch" instance=ExtResource( 11 )]
+visible = false
+position = Vector2( -0.456299, -2.74219 )
+scale = Vector2( 0.909774, 0.550613 )
+Monitoring = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Game/Grounds/Ground_building/Prisonner"]
+anims/Action = SubResource( 21 )
+
+[node name="PrisonnerLetter" parent="Game/Grounds/Ground_building" instance=ExtResource( 15 )]
+position = Vector2( 333, -829 )
+Identifier = "PrisonnerLetter"
+Content = "I've often wondered if I should end it all... if I could put an end to it all, if it would spare people.
+
+The truth is I can't... I have to, it's a need, a way to feel.... better.
+
+And if you have the misfortune to let me out, I will continue.... tirelessly... mechanically...."
+
 [node name="Building2" parent="Game/Grounds/Ground_building" instance=ExtResource( 12 )]
 position = Vector2( 1403, -64 )
 z_index = 2
@@ -904,7 +1015,7 @@ polygon = PoolVector2Array( 13, -27, 12, -172, 18, -172, 18, -163, 35, -163, 36,
 
 [node name="Lanterne" parent="Game/Grounds/Ground_building/Building2/Stairs2" instance=ExtResource( 13 )]
 position = Vector2( 109, -12 )
-rotation = -0.221559
+rotation = -0.602844
 
 [node name="Stairs3" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 2 )]
 position = Vector2( -254, -720 )
@@ -927,7 +1038,11 @@ Content = "[right]April 15th 1997[/right]
 
 Our apartment, on the top floor. Despite all the bad memories I've had there, I love this view.... The sunsets were magnificent....
 
-I remember lying in bed, locked in by my father... just gazing out the window at the sun, through the tears that were beading in my eyes. Nothing existed around me at that moment."
+I remember lying in bed, locked in by my father... just gazing out the window at the sun, through the tears that were beading in my eyes. Nothing existed around me at that moment.
+
+I thought of all the things I'd do once I was out.... of all the people I could destroy....
+
+Why others are happy, while I live a hell.... I'd give them a hard time, I swear!"
 
 [node name="Torch" parent="Game/Grounds/Ground_building/Building2" instance=ExtResource( 14 )]
 position = Vector2( -95, -625 )
@@ -956,7 +1071,7 @@ anims/Cycle = SubResource( 19 )
 anims/RESET = SubResource( 20 )
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 68, -75 )
+position = Vector2( 6591, -797 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [  ]
@@ -971,6 +1086,8 @@ visible = false
 
 [node name="EndLevel" parent="." instance=ExtResource( 5 )]
 position = Vector2( 7128, -634 )
+
+[connection signal="LetterDiscovered" from="Game/Grounds/Ground_building/PrisonnerLetter" to="Game/Grounds/Ground_building/Prisonner" method="_on_PrisonnerLetter_LetterDiscovered"]
 
 [editable path="ParallaxBackground/far/Node2D/Building"]
 [editable path="ParallaxBackground/far/Node2D/Building2"]
