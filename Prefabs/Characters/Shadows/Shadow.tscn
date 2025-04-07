@@ -6,7 +6,7 @@
 
 [node name="Shadow" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-WaitingDuration = 0.0
+WaitingDuration = 1.0
 GoLeft = false
 
 [node name="AlarmLight" parent="Appearance" index="1" instance=ExtResource( 3 )]

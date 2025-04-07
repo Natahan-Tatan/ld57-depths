@@ -41,7 +41,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1.2, 5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -115.0, -45.0, -45.0 ]
+"values": [ -115.0, -60.0, -60.0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -106,6 +106,10 @@ scale = Vector2( 0.4, 0.4 )
 light_mask = 7
 position = Vector2( 210.333, -296.333 )
 
+[node name="Tree14" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( -615, -287.5 )
+
 [node name="Tree2" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
 light_mask = 7
 position = Vector2( 683.333, -295 )
@@ -113,6 +117,46 @@ position = Vector2( 683.333, -295 )
 [node name="Tree4" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
 light_mask = 7
 position = Vector2( 1435, -295 )
+
+[node name="Tree3" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 2254.5, -261 )
+
+[node name="Tree13" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 6610, -280 )
+
+[node name="Tree12" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 4690, -280 )
+
+[node name="Tree5" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 2727.5, -259.667 )
+
+[node name="Tree7" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 1199.5, -291 )
+
+[node name="Tree9" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 5219.5, -241 )
+
+[node name="Tree10" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 5692.5, -239.667 )
+
+[node name="Tree11" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 4164.5, -271 )
+
+[node name="Tree8" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 1672.5, -289.667 )
+
+[node name="Tree6" parent="ParallaxBackground/far/Node2D" instance=ExtResource( 5 )]
+light_mask = 7
+position = Vector2( 3479.17, -259.667 )
 
 [node name="Ground" type="Sprite" parent="ParallaxBackground/far/Node2D"]
 light_mask = 7
@@ -132,6 +176,16 @@ __meta__ = {
 [node name="Node2D" type="Node2D" parent="ParallaxBackground/near"]
 scale = Vector2( 0.8, 0.8 )
 
+[node name="Tree5" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( -925, -196.25 )
+scale = Vector2( 1, 1 )
+
+[node name="Tree4" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( -388.75, -183.75 )
+scale = Vector2( 1, 1 )
+
 [node name="Tree" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
 light_mask = 3
 position = Vector2( 222, -196 )
@@ -143,6 +197,44 @@ position = Vector2( 691.111, -193.333 )
 [node name="Tree3" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
 light_mask = 3
 position = Vector2( 1281.11, -193.333 )
+
+[node name="Tree6" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 1791.25, -183.75 )
+
+[node name="Tree7" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 2056.25, -168.75 )
+
+[node name="Tree10" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 3175, -168.75 )
+
+[node name="Tree11" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 3643.75, -185 )
+
+[node name="Tree12" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 4223.75, -177.5 )
+
+[node name="Tree13" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 4430, -193.75 )
+
+[node name="Tree14" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 3937.5, -186.25 )
+
+[node name="Tree8" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 2478.75, -168.75 )
+rotation = -0.129154
+
+[node name="Tree9" parent="ParallaxBackground/near/Node2D" instance=ExtResource( 5 )]
+light_mask = 3
+position = Vector2( 4995, -192.5 )
+rotation = -0.129154
 
 [node name="Ground" type="Sprite" parent="ParallaxBackground/near/Node2D"]
 light_mask = 3
@@ -161,17 +253,21 @@ color = Color( 0.298039, 0.298039, 0.298039, 1 )
 
 [node name="MainGround" parent="Game" instance=ExtResource( 3 )]
 position = Vector2( 20, -6 )
-polygon = PoolVector2Array( -684, -565, -668, -745, -508, -765, -533.463, -437.901, -212, -285, -268, -257, -539.01, -366.644, -560, -97, -463, 3, 14, -36, 127, -52, 125, 21, 275, 69, -10, 2361, -1244, 2493, -1047, 1574, -1692, 573, -1604, 3, -864, 3, -796, -77 )
+polygon = PoolVector2Array( -684, -565, -668, -745, -508, -765, -533.463, -437.901, -212, -285, -268, -257, -539.01, -366.644, -560, -97, -463, 3, 14, -36, 127, -52, 125, 21, 301, 49, -10, 2361, -1244, 2493, -1047, 1574, -1692, 573, -1604, 3, -864, 3, -796, -77 )
 
 [node name="Ground_2" parent="Game/MainGround" instance=ExtResource( 3 )]
 position = Vector2( 505, 163 )
-polygon = PoolVector2Array( -93.1846, -19.0812, 14, -36, 127, -52, 253.549, -37.2537, 1001, 68, 1000.11, 81.7765, 1140, 118, 1127, 148, 1091.01, 138.575, 1073, 134, 1001, 115, 1014, 191, 1073, 134, 1091, 138, 1018.1, 226.223, 1053.2, 527.913, 1392, 2161, 78.015, 2089.84, -138.693, 221.705, -161.448, 131.751 )
+polygon = PoolVector2Array( -93.1846, -19.0812, 14, -36, 127, -52, 302, -7, 393, -4, 601, 57, 606.815, 83.8377, 1001, 68, 1000.11, 81.7765, 1140, 118, 1127, 148, 1091.01, 138.575, 1073, 134, 1001, 115, 1014, 191, 1073, 134, 1091, 138, 1018.1, 226.223, 1053.2, 527.913, 1392, 2161, 78.015, 2089.84, -138.693, 221.705, -161.448, 131.751 )
 
 [node name="Shadow" parent="Game/MainGround/Ground_2" instance=ExtResource( 6 )]
 position = Vector2( 119, -79 )
 Speed = 20.0
-WaitingDuration = 5.0
+WaitingDuration = 3.0
 GoLeft = true
+
+[node name="AlarmLight" parent="Game/MainGround/Ground_2/Shadow/Appearance" index="1"]
+position = Vector2( 9, 3 )
+scale = Vector2( 0.772313, 0.623695 )
 
 [node name="Ground_3" parent="Game/MainGround" instance=ExtResource( 3 )]
 position = Vector2( 1947, 269 )
@@ -329,11 +425,11 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Lanterne" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
 position = Vector2( -186, -29 )
-rotation = 0.60002
+rotation = 0.257748
 
 [node name="AlarmLantern" parent="Game/MainGround/CabaneZone/Tree" instance=ExtResource( 11 )]
 position = Vector2( 138, -22 )
-rotation = 0.133046
+rotation = 0.41894
 __meta__ = {
 "_edit_group_": true
 }
@@ -354,13 +450,12 @@ position = Vector2( 81, 115 )
 [node name="Shadow" parent="Game/MainGround/CabaneZone" instance=ExtResource( 6 )]
 position = Vector2( 2469, -138 )
 Speed = 30.0
-WaitingDuration = 1.0
 
 [node name="AlarmLight" parent="Game/MainGround/CabaneZone/Shadow/Appearance" index="1"]
 rotation = -1.16937
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
-position = Vector2( 46, -74 )
+position = Vector2( 41, -74 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [  ]
@@ -373,6 +468,7 @@ smoothing_enabled = true
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[editable path="Game/MainGround/Ground_2/Shadow"]
 [editable path="Game/MainGround/Ground_3/Shadow"]
 [editable path="Game/MainGround/CabaneZone/Tree/AlarmLantern"]
 [editable path="Game/MainGround/CabaneZone/Shadow"]
